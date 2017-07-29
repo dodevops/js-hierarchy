@@ -1,0 +1,40 @@
+{
+  "name": "js-hierarchy",
+  "description": "Typescript and Javascript hierarchy management",
+  "version": "1.0.0",
+  "author": {
+    "name": "Dennis Ploeger",
+    "email": "develop@dieploegers.de"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dploeger/js-hierarchy.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "undefined/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "winston": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.37",
+    "@types/winston": "^2.2.0",
+    "chai": "^3.5.0",
+    "grunt": "^1.0.1",
+    "grunt-ts": "^6.0.0-beta.3",
+    "grunt-tslint": "^3.3.0",
+    "grunt-mocha-test": "^0.13.2",
+    "mocha": "^3.2.0",
+    "tslint": "3.15.1",
+    "typescript": "^2.0.10",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-istanbul": "^0.7.2",
+    "remap-istanbul": "^0.9.1"
+  },
+  "keywords": "hierarchy, typescript, tree, root, children"
+}
