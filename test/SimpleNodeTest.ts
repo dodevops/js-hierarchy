@@ -1,11 +1,10 @@
 import 'mocha';
 import {Node} from '../index';
-import {AbstractNode} from '../lib/AbstractNode';
 import {NodeNotFoundError} from '../lib/error/NodeNotFoundError';
-import chai = require('chai');
 import {SimpleNode} from '../lib/SimpleNode';
 import {DataNotFoundError} from '../lib/error/DataNotFoundError';
 import {makeTestHierarchy} from './TestRessources';
+import chai = require('chai');
 
 let should = chai.should();
 
@@ -173,7 +172,7 @@ describe(
 
                 should.throw(
                     () => {
-                        rootNode.removeChild(99)
+                        rootNode.removeChild(99);
                     },
                     NodeNotFoundError,
                     'Node with id 99 was not found',
@@ -190,7 +189,7 @@ describe(
 
                     should.throw(
                         () => {
-                            rootNode.removeChild(new SimpleNode())
+                            rootNode.removeChild(new SimpleNode());
                         },
                         NodeNotFoundError,
                         'Invalid Node AbstractNode with 0 children',
@@ -208,7 +207,7 @@ describe(
                 let rootNode = makeTestHierarchy();
 
                 rootNode.addChild(
-                    new SimpleNode({ name: 'testbetween' }),
+                    new SimpleNode({name: 'testbetween'}),
                     1
                 );
 
@@ -247,7 +246,10 @@ describe(
 
                 rootNode.toString()
                     .should.equal(
-                    'AbstractNode with 3 children: AbstractNode with 0 children, AbstractNode with 0 children, AbstractNode with 2 children: AbstractNode with 0 children, AbstractNode with 0 children',
+                    'AbstractNode with 3 children: AbstractNode with 0 '
+                    + 'children, AbstractNode with 0 children, AbstractNode '
+                    + 'with 2 children: AbstractNode with 0 children, '
+                    + 'AbstractNode with 0 children',
                     'Invalid representation'
                 );
 
@@ -263,8 +265,8 @@ describe(
 
                 rootNode.getData('testkey')
                     .should.equal(
-                        'testvalue',
-                        'Invalid value'
+                    'testvalue',
+                    'Invalid value'
                 );
 
                 done();
@@ -276,7 +278,9 @@ describe(
                 let rootNode = makeTestHierarchy();
 
                 should.throw(
-                    () => {rootNode.getData('INVALIDKEY')},
+                    () => {
+                        rootNode.getData('INVALIDKEY');
+                    },
                     DataNotFoundError,
                     'No data found with key INVALIDKEY',
                     'Did not throw'

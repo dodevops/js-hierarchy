@@ -15,11 +15,15 @@ module.exports = function (grunt) {
             }
         },
         clean: {
-            coverage: ['test/coverage']
+            coverage: ['test/coverage'],
+            declaration: ['index.declaration.*']
         },
         ts: {
             default: {
                 tsconfig: true
+            },
+            generateDeclaration: {
+                tsconfig: 'tsconfig.declaration.json'
             }
         },
         copy: {
@@ -29,6 +33,11 @@ module.exports = function (grunt) {
                 },
                 options: {
                     expand: true
+                }
+            },
+            declaration: {
+                files: {
+                    'index.d.ts': 'index.declaration.d.ts'
                 }
             }
         },
@@ -113,7 +122,10 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'release',
         [
-            'test'
+            'test',
+            'ts:generateDeclaration',
+            'copy:declaration',
+            'clean:declaration'
         ]
     );
 
