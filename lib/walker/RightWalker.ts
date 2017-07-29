@@ -12,9 +12,7 @@ import {Node} from '../Node';
  */
 export class RightWalker implements Walker {
 
-    walk(node: Node, action: ActionFunction): void {
-        // find index of this node
-
+    public walk(node: Node, action: ActionFunction): void {
         let parent: Node = node.getParent();
 
         for (let i = parent.findChild(node) + 1; i < parent.getChildren().length; i++) {

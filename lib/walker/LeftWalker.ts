@@ -12,12 +12,10 @@ import {Node} from '../Node';
  */
 export class LeftWalker implements Walker {
 
-    walk(node: Node, action: ActionFunction): void {
-        // find index of this node
-
+    public walk(node: Node, action: ActionFunction): void {
         let parent: Node = node.getParent();
 
-        for (let i = parent.findChild(node) - 1; i > 0; i--) {
+        for (let i = parent.findChild(node) - 1; i >= 0; i--) {
             action(parent.getChildren()[i]);
         }
     }

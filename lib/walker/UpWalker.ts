@@ -10,7 +10,7 @@ import {ActionFunction} from '../ActionFunction';
  */
 export class UpWalker implements Walker {
 
-    walk(node: Node, action: ActionFunction): void {
+    public walk(node: Node, action: ActionFunction): void {
         if (!node.isRoot()) {
             action(node.getParent());
             this.walk(node.getParent(), action);
