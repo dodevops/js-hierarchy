@@ -94,7 +94,7 @@ module.exports = function (grunt) {
         'build',
         [
             'tslint',
-            'ts'
+            'ts:default'
         ]
     );
 
