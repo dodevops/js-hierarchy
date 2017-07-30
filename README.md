@@ -130,30 +130,34 @@ rootNode.walk(Direction.down, (node) => {
 Please look at this example tree:
 
 ```
-              +------+
-    +---------+ root +-------+         +
-    |         +--+---+       |         |
-    |    left    |   right   |         | down
-    |    <--+    |   +--->   |         |
-    |            |           |         v
-+---v-----+ +----v----+ +----v----+
-| child 1 | | child 2 | | child 3 |
-+---------+ +---------+ +----+----+
-                             |
-                             |          ^
-                             |          |
-                       +-----v------+   | up
-                       | grandchild |   |
-                       +------------+   +
+                                    +----------------+
+      +                             | grandchild 3.1 |
+      |                             +-------^--------+
+down  |                                     |
+      |                                     |
+      |                                     |
+      |                                     |
+      |     +---------+  +---------+   +----+----+
+      v     | child 1 |  | child 2 |   | child 3 |
+            +---^-----+  +----^----+   +----^----+
+      ^         |             |             |
+      |         |             |             |
+      |         |   <----+    |   +----->   |
+ up   |         |    left     |    right    |
+      |         |             |             |
+      |         |             |             |
+      |         |          +--+---+         |
+      +         +----------+ root +---------+
+                           +------+
 ```
 
 Now, these directions are available:
 
-* up: Walks to the parent node, then the next parent node and so on
-  until the root node is reached. (from grandchild to child 1-3 to root)
-* down: Walks through all child nodes. Then to their child nodes and
+* up: Walks through all child nodes. Then to their child nodes and
   so on until no node is available anymore (from root to child 1-3
   to grandchild)
+* down: Walks to the parent node, then the next parent node and so on
+  until the root node is reached. (from grandchild to child 1-3 to root)
 * left: Walks all siblings (the parent node's children) from the current
   node to the left (children having a smaller array index) until the
   first node is reached (from child2 to child1)

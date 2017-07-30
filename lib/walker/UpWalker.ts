@@ -11,9 +11,9 @@ import {ActionFunction} from '../ActionFunction';
 export class UpWalker implements Walker {
 
     public walk(node: Node, action: ActionFunction): void {
-        if (!node.isRoot()) {
-            action(node.getParent());
-            this.walk(node.getParent(), action);
+        for (let childNode of node.getChildren()) {
+            action(childNode);
+            this.walk(childNode, action);
         }
     }
 

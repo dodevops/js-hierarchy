@@ -10,24 +10,24 @@ let should = chai.should();
 describe('Node#walk', () => {
     let checkNodes: any[] = [
         {
-            node: makeTestHierarchy(),
+            node: makeTestHierarchy().getChildren()[2].getChildren()[0],
             description: 'DownWalker',
             direction: Direction.down,
+            expectedNodes: [
+                'test3',
+                'root'
+            ]
+        },
+        {
+            node: makeTestHierarchy(),
+            description: 'UpWalker',
+            direction: Direction.up,
             expectedNodes: [
                 'test1',
                 'test2',
                 'test3',
                 'test3.1',
                 'test3.2'
-            ]
-        },
-        {
-            node: makeTestHierarchy().getChildren()[2].getChildren()[0],
-            description: 'UpWalker',
-            direction: Direction.up,
-            expectedNodes: [
-                'test3',
-                'root'
             ]
         },
         {
@@ -47,19 +47,11 @@ describe('Node#walk', () => {
             ]
         },
         {
-            node: makeTestHierarchy().getChildren()[1],
+            node: makeTestHierarchy().getChildren()[2],
             description: 'LeftWalker and UpWalker',
             direction: [Direction.left, Direction.up],
             expectedNodes: [
-                'test1',
-                'root'
-            ]
-        },
-        {
-            node: makeTestHierarchy().getChildren()[2],
-            description: 'LeftWalker and DownWalker',
-            direction: [Direction.left, Direction.down],
-            expectedNodes: [
+
                 'test2',
                 'test1',
                 'test3.1',
@@ -68,20 +60,29 @@ describe('Node#walk', () => {
         },
         {
             node: makeTestHierarchy().getChildren()[1],
-            description: 'RightWalker and UpWalker',
-            direction: [Direction.right, Direction.up],
+            description: 'LeftWalker and DownWalker',
+            direction: [Direction.left, Direction.down],
             expectedNodes: [
-                'test3',
+                'test1',
                 'root'
             ]
         },
         {
             node: makeTestHierarchy().getChildren()[2],
-            description: 'RightWalker and DownWalker',
-            direction: [Direction.right, Direction.down],
+            description: 'RightWalker and UpWalker',
+            direction: [Direction.right, Direction.up],
             expectedNodes: [
                 'test3.1',
                 'test3.2'
+            ]
+        },
+        {
+            node: makeTestHierarchy().getChildren()[1],
+            description: 'RightWalker and DownWalker',
+            direction: [Direction.right, Direction.down],
+            expectedNodes: [
+                'test3',
+                'root'
             ]
         }
     ];

@@ -11,9 +11,9 @@ import {ActionFunction} from '../ActionFunction';
 export class DownWalker implements Walker {
 
     public walk(node: Node, action: ActionFunction): void {
-        for (let childNode of node.getChildren()) {
-            action(childNode);
-            this.walk(childNode, action);
+        if (!node.isRoot()) {
+            action(node.getParent());
+            this.walk(node.getParent(), action);
         }
     }
 
