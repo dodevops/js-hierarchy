@@ -103,7 +103,8 @@ describe(
                         rootNode.findChild(<Node> new SimpleNode());
                     },
                     NodeNotFoundError,
-                    'Invalid Node AbstractNode with 0 children',
+                    'Invalid Node {"_class":"SimpleNode","_isRoot":true,'
+                    + '"_data":{},"_children":[]}',
                     'Did not throw'
                 );
 
@@ -192,7 +193,8 @@ describe(
                             rootNode.removeChild(new SimpleNode());
                         },
                         NodeNotFoundError,
-                        'Invalid Node AbstractNode with 0 children',
+                        'Invalid Node {"_class":"SimpleNode",'
+                        + '"_isRoot":true,"_data":{},"_children":[]}',
                         'Did not throw'
                     );
 
@@ -240,17 +242,14 @@ describe(
             });
         });
 
-        describe('#toString', () => {
+        describe('#toJSON', () => {
             it('should represent the node', function (done) {
                 let rootNode = makeTestHierarchy();
 
-                rootNode.toString()
+                JSON.parse(rootNode.toJSON())._class
                     .should.equal(
-                    'AbstractNode with 3 children: AbstractNode with 0 '
-                    + 'children, AbstractNode with 0 children, AbstractNode '
-                    + 'with 2 children: AbstractNode with 0 children, '
-                    + 'AbstractNode with 0 children',
-                    'Invalid representation'
+                        'SimpleNode',
+                        'Invalid JSON represenation'
                 );
 
                 done();

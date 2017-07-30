@@ -17,7 +17,7 @@ export abstract class AbstractNode implements Node {
 
     private _children: Node[] = [];
     private _parent: Node = null;
-    private _data: { [key: string]: any };
+    private _data: { [key: string]: any } = {};
 
     constructor(data?: { [p: string]: any }) {
         if (data) {
@@ -65,7 +65,7 @@ export abstract class AbstractNode implements Node {
         }
 
         throw new NodeNotFoundError(
-            `Invalid Node ${child}`
+            `Invalid Node ${child.toJSON()}`
         );
     }
 
@@ -81,7 +81,10 @@ export abstract class AbstractNode implements Node {
         return this._parent === null;
     }
 
-    public walk(direction: Direction | Direction[], action: ActionFunction): void {
+    public walk(
+        direction: Direction | Direction[],
+        action: ActionFunction
+    ): void {
         let _direction: Direction[];
         if (!Array.isArray(direction)) {
             _direction = [direction];
@@ -113,24 +116,6 @@ export abstract class AbstractNode implements Node {
         }
     }
 
-    public toString(): string {
-        let explain = `AbstractNode with ${this._children.length} children`;
-
-        if (this._children.length > 0) {
-            explain = explain + ': ';
-        }
-
-        let childExplain: string[] = [];
-
-        for (let childNode of this._children) {
-            childExplain.push(childNode.toString());
-        }
-
-        explain = explain + childExplain.join(', ');
-
-        return explain;
-    }
-
     public setData(key: string, value: any): Node {
         this._data[key] = value;
         return this;
@@ -141,5 +126,16 @@ export abstract class AbstractNode implements Node {
             throw new DataNotFoundError(`No data found with key ${key}`);
         }
         return this._data[key];
+    }
+
+    public toJSON(): string {
+        return JSON.stringify(
+            {
+                _class: this.constructor.name,
+                _isRoot: this.isRoot(),
+                _data: this._data,
+                _children: this._children
+            }
+        );
     }
 }

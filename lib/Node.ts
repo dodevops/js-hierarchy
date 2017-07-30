@@ -88,4 +88,10 @@ export interface Node {
      */
     getData(key: string): any;
 
+    /**
+     * Return a JSON representation of the node
+     * @returns {string}
+     */
+    toJSON(): string;
+
 }
