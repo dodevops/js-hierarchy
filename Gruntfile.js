@@ -9,8 +9,10 @@ module.exports = function (grunt) {
                 src: [
                     'index.ts',
                     'test/**/*.ts',
+                    'lib/**/*.ts',
                     '!index.d.ts',
-                    '!test/**/*.d.ts'
+                    '!test/**/*.d.ts',
+                    '!lib/**/*.d.ts'
                 ]
             }
         },

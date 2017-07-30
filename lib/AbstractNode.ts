@@ -25,11 +25,11 @@ export abstract class AbstractNode implements Node {
         }
     }
 
-    getChildren(): Node[] {
+    public getChildren(): Node[] {
         return this._children;
     }
 
-    addChild(child: Node, position?: number): Node {
+    public addChild(child: Node, position?: number): Node {
         child.setParent(this);
 
         if (position) {
@@ -41,7 +41,7 @@ export abstract class AbstractNode implements Node {
         return child;
     }
 
-    removeChild(child: Node | number): void {
+    public removeChild(child: Node | number): void {
         if (typeof child === 'number') {
             if (
                 child < 0 ||
@@ -57,7 +57,7 @@ export abstract class AbstractNode implements Node {
         }
     }
 
-    findChild(child: Node): number {
+    public findChild(child: Node): number {
         for (let i = 0; i < this._children.length; i++) {
             if (this._children[i] === child) {
                 return i;
@@ -69,19 +69,19 @@ export abstract class AbstractNode implements Node {
         );
     }
 
-    getParent(): Node {
+    public getParent(): Node {
         return this._parent;
     }
 
-    setParent(node: Node): void {
+    public setParent(node: Node): void {
         this._parent = node;
     }
 
-    isRoot(): boolean {
+    public isRoot(): boolean {
         return this._parent === null;
     }
 
-    walk(direction: Direction | Direction[], action: ActionFunction): void {
+    public walk(direction: Direction | Direction[], action: ActionFunction): void {
         let _direction: Direction[];
         if (!Array.isArray(direction)) {
             _direction = [direction];
@@ -131,12 +131,12 @@ export abstract class AbstractNode implements Node {
         return explain;
     }
 
-    setData(key: string, value: any): Node {
+    public setData(key: string, value: any): Node {
         this._data[key] = value;
         return this;
     }
 
-    getData(key: string): any {
+    public getData(key: string): any {
         if (!this._data.hasOwnProperty(key)) {
             throw new DataNotFoundError(`No data found with key ${key}`);
         }
