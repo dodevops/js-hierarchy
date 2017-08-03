@@ -2,7 +2,6 @@
  * js-hierarchy - Typescript and Javascript hierarchy management
  */
 
-
 export {Node} from './lib/Node';
 export {SimpleNode} from './lib/SimpleNode';
 export {AbstractNode} from './lib/AbstractNode';
