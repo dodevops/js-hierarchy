@@ -34,7 +34,9 @@
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-istanbul": "^0.7.2",
-    "remap-istanbul": "^0.9.1"
+    "remap-istanbul": "^0.9.1",
+    "grunt-typedoc": "^0.2.4",
+    "typedoc": "^0.8.0"
   },
   "keywords": [
     "hierarchy",

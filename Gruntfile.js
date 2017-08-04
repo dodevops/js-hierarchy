@@ -81,6 +81,19 @@ module.exports = function (grunt) {
                 dir: 'test/coverage/reports',
                 print: 'detail'
             }
+        },
+        typedoc: {
+            default: {
+                options: {
+                    module: 'commonjs',
+                    out: 'doc/',
+                    name: 'js-hierarchy',
+                    target: 'es6',
+                    readme: 'README.md',
+                    exclude: '**/test/**/*'
+                },
+                src: ['./index.ts', './lib/**/*.ts']
+            }
         }
     });
 
@@ -91,6 +104,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('remap-istanbul');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-typedoc');
 
     grunt.registerTask(
         'build',
@@ -127,7 +141,8 @@ module.exports = function (grunt) {
             'test',
             'ts:generateDeclaration',
             'copy:declaration',
-            'clean:declaration'
+            'clean:declaration',
+            'typedoc'
         ]
     );
 

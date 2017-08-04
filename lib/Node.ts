@@ -25,7 +25,7 @@ export interface Node {
      * Remove a child by specifying the node or index that should be removed.
      *
      * @param {Node} child The child node or index to be removed
-     * @throws {NodeNotFoundError}
+     * @throws [[NodeNotFoundError]]
      */
     removeChild(child: Node | number): void;
 
@@ -33,6 +33,7 @@ export interface Node {
      * Find the specified node and return the index
      * @param {Node} child the node to search for
      * @returns {number} the index or null, if no node was found
+     * @throws [[NodeNotFoundError]]
      */
     findChild(child: Node): number;
 
@@ -68,8 +69,8 @@ export interface Node {
      *
      * @param {Direction | Direction[]} direction
      * @param {ActionFunction} action
-     * @throws {InvalidDirectionError}
-     * @throws {NodeNotFoundError}
+     * @throws [[InvalidDirectionError]]
+     * @throws [[NodeNotFoundError]]
      */
     walk(direction: Direction | Direction[], action: ActionFunction): void;
 
@@ -85,6 +86,7 @@ export interface Node {
      * Retrieve arbitrary data from the node
      * @param {string} key
      * @returns {any} the value
+     * @throws [[DataNotFoundError]]
      */
     getData(key: string): any;
 
