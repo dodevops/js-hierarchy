@@ -53,7 +53,12 @@ var rootNode = new hierarchy.SimpleNode();
 Install the module and include the browser script:
 
 ```html
-<script src="node_modules/js-hierarchy/browser.min.js"></script>
+<script type="text/javascript" src="node_modules/js-hierarchy/browser.min.js"></script>
+```
+
+or use the jsDelivr CDN hosted version:
+```html
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/js-hierarchy/browser.min.js"></script>
 ```
 
 With this the global namespace will include a "jshierarchy" object:
