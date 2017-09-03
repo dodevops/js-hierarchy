@@ -7,8 +7,7 @@
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/dodevops.svg)](https://saucelabs.com/u/dodevops)
 
-Proper Javascript and Typescript hierarchy management for Node, Typescript
-and the Browser.
+Proper hierarchy management for Node, Typescript and the Browser.
 
 ## Introduction
 
