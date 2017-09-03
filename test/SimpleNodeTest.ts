@@ -8,6 +8,16 @@ import chai = require('chai');
 
 let should = chai.should();
 
+// for Browser tests
+
+if (typeof window !== 'undefined') {
+    mocha.setup(
+        {
+            ui: 'bdd'
+        }
+    );
+}
+
 describe(
     'SimpleNode', function () {
         it('should instantiate just fine', function (done) {
@@ -248,8 +258,8 @@ describe(
 
                 JSON.parse(rootNode.toJSON())._class
                     .should.equal(
-                        'SimpleNode',
-                        'Invalid JSON represenation'
+                    'SimpleNode',
+                    'Invalid JSON represenation'
                 );
 
                 done();

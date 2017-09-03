@@ -1,6 +1,62 @@
 module.exports = function (grunt) {
 
+    var package = require('./package.json');
+
+    var browsers = [
+        {
+            browserName: 'firefox',
+            platform: 'Windows 10',
+            version: 'latest'
+        },
+        {
+            browserName: 'firefox',
+            platform: 'Windows 10',
+            version: 'latest-1'
+        },
+        {
+            browserName: 'firefox',
+            platform: 'Windows 10',
+            version: 'latest-2'
+        },
+        {
+            browserName: 'googlechrome',
+            platform: 'Windows 10',
+            version: 'latest'
+        },
+        {
+            browserName: 'googlechrome',
+            platform: 'Windows 10',
+            version: 'latest-1'
+        },
+        {
+            browserName: 'googlechrome',
+            platform: 'Windows 10',
+            version: 'latest-2'
+        },
+        {
+            browserName: 'MicrosoftEdge',
+            platform: 'Windows 10',
+            version: '15.15063'
+        },
+        {
+            browserName: 'MicrosoftEdge',
+            platform: 'Windows 10',
+            version: '14.14393'
+        },
+        {
+            browserName: 'MicrosoftEdge',
+            platform: 'Windows 10',
+            version: '13.10586'
+        },
+        {
+            browserName: 'safari',
+            platform: 'macOS 10.12',
+            version: '10.0'
+        }
+    ];
+
     grunt.initConfig({
+        pkg: '<json:package.json>',
         tslint: {
             options: {
                 configuration: 'tslint.json'
@@ -94,6 +150,69 @@ module.exports = function (grunt) {
                 },
                 src: ['./index.ts', './lib/**/*.ts']
             }
+        },
+        browserify: {
+            default: {
+                options: {
+                    plugin: [
+                        [
+                            'tsify',
+                            {}
+                        ]
+                    ],
+                    browserifyOptions: {
+                        standalone: 'jshierarchy'
+                    }
+                },
+                files: {
+                    'browser.js': ['index.ts']
+                }
+            },
+            test: {
+                options: {
+                    plugin: [
+                        [
+                            'tsify',
+                            {}
+                        ]
+                    ]
+                },
+                files: {
+                    'test/test.browser.js': ['test/**/*.ts']
+                }
+            }
+        },
+        uglify: {
+            default: {
+                files: {
+                    'browser.min.js': ['browser.js']
+                }
+            }
+        },
+        connect: {
+            server: {
+                options: {
+                    base: '',
+                    port: 9999
+                }
+            }
+        },
+        'saucelabs-mocha': {
+            browser: {
+                options: {
+                    urls: [
+                        'http://saucelabs.test:9999/test/test.browser.html'
+                    ],
+                    browsers: browsers,
+                    testname: 'js-hierarchy browser test',
+                    throttled: 1,
+                    sauceConfig: {
+                        'video-upload-on-pass': false
+                    },
+                    public: 'public restricted',
+                    build: package.version
+                }
+            }
         }
     });
 
@@ -105,6 +224,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-typedoc');
+    grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-saucelabs');
+    grunt.loadNpmTasks('grunt-contrib-connect');
 
     grunt.registerTask(
         'build',
@@ -136,13 +259,25 @@ module.exports = function (grunt) {
     );
 
     grunt.registerTask(
+        'browsertest',
+        [
+            'build',
+            'browserify:test',
+            'connect',
+            'saucelabs-mocha:browser'
+        ]
+    );
+
+    grunt.registerTask(
         'release',
         [
             'test',
             'ts:generateDeclaration',
             'copy:declaration',
             'clean:declaration',
-            'typedoc'
+            'typedoc',
+            'browserify:default',
+            'uglify'
         ]
     );
 

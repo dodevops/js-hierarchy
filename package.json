@@ -21,22 +21,28 @@
   },
   "devDependencies": {
     "@types/chai": "^3.4.34",
-    "@types/mocha": "^2.2.37",
     "@types/loglevel": "^1.4.29",
+    "@types/mocha": "^2.2.37",
     "chai": "^3.5.0",
     "grunt": "^1.0.1",
-    "grunt-ts": "^6.0.0-beta.3",
-    "grunt-tslint": "^3.3.0",
-    "grunt-mocha-test": "^0.13.2",
-    "mocha": "^3.2.0",
-    "tslint": "3.15.1",
-    "typescript": "^2.0.10",
+    "grunt-browserify": "^5.0.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^3.0.1",
     "grunt-istanbul": "^0.7.2",
-    "remap-istanbul": "^0.9.1",
+    "grunt-mocha-test": "^0.13.2",
+    "grunt-ts": "^6.0.0-beta.3",
+    "grunt-tslint": "^3.3.0",
     "grunt-typedoc": "^0.2.4",
-    "typedoc": "^0.8.0"
+    "karma-mocha": "^1.3.0",
+    "mocha": "^3.2.0",
+    "remap-istanbul": "^0.9.1",
+    "tsify": "^3.0.1",
+    "tslint": "3.15.1",
+    "typedoc": "^0.8.0",
+    "typescript": "^2.0.10",
+    "grunt-saucelabs": "^9.0.0",
+    "grunt-contrib-connect": "^1.0.2"
   },
   "keywords": [
     "hierarchy",
@@ -44,5 +50,8 @@
     "tree",
     "root",
     "children"
-  ]
+  ],
+  "scripts": {
+    "test": "grunt test"
+  }
 }

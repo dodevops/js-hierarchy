@@ -1,5 +1,8 @@
 # js-hierarchy
 
+[![Sauce Test Status](https://saucelabs.com/buildstatus/dodevops)](https://saucelabs.com/u/dodevops)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/dodevops.svg)](https://saucelabs.com/u/dodevops)
+
 Proper Javascript and Typescript hierarchy management.
 
 ## Introduction
@@ -48,13 +51,13 @@ Install the module and include the browser script:
 <script src="node_modules/js-hierarchy/browser.js"></script>
 ```
 
-Then, simply use the module as you would with Node.js:
+With this the global namespace will include a "jshierarchy" object:
 
 ```javascript
-var hierarchy = require('js-hierarchy');
-
-var rootNode = new hierarchy.SimpleNode();
+var rootNode = new jshierarchy.SimpleNode();
 ```
+
+After that, everything's right as working in Node.js.
 
 ## Building the hierarchy
 
@@ -183,7 +186,7 @@ Please read the API documentation for details
 
 To test and build this package, simply use grunt:
 
-    grunt test
+    grunt release
 
 This will run all unit tests and a coverage report.
 
@@ -212,3 +215,16 @@ and keep the coverage up.
 We will review the pull request and optionally comment your code
 and probably ask you to fix one or two things, before we can merge
 your code.
+
+## Browser compatibility tests
+
+Browser compatibility tests are run using SauceLabs. To run them,
+first add this line to your local hosts file:
+
+    127.0.0.1 saucelabs.test
+
+Then, when running ```grunt browsertest```, set these two environment
+variables:
+
+    SAUCE_USERNAME=<your SauceLabs username>
+    SAUCE_ACCESS_KEY=<your SauceLabs access key>

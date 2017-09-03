@@ -7,6 +7,16 @@ import chai = require('chai');
 
 let should = chai.should();
 
+// for Browser tests
+
+if (typeof window !== 'undefined') {
+    mocha.setup(
+        {
+            ui: 'bdd'
+        }
+    );
+}
+
 describe('Node#walk', () => {
     let checkNodes: any[] = [
         {

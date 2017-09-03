@@ -159,3 +159,5 @@ index.js.map
 test/**/*.js
 test/**/*.js.map
 *.d.ts
+browser.js
+test/test.browser.js
