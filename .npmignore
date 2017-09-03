@@ -1,0 +1,12 @@
+*.iml
+.npmignore
+.gitignore
+.travis.yml
+*.ts
+!js-hierarchy.d.ts
+test
+tsconfig.declaration.json
+tsconfig.json
+tslint.json
+doc
+Gruntfile.js

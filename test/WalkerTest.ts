@@ -1,5 +1,5 @@
 import 'mocha';
-import {Node} from '../index';
+import {Node} from '../js-hierarchy';
 import {makeTestHierarchy} from './TestRessources';
 import {Direction} from '../lib/Direction';
 import {InvalidDirectionError} from '../lib/error/InvalidDirectionError';

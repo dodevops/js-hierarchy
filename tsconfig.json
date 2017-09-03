@@ -8,11 +8,11 @@
         "declaration": true
     },
     "include": [
-        "index.ts",
+        "js-hierachy.ts",
         "test/**/*.ts"
     ],
     "exclude": [
-        "index.d.ts",
+        "js-hierarchy.d.ts",
         "test/**/*.d.ts"
     ]
 }

@@ -6,13 +6,13 @@
         "noEmitOnError": true,
         "target": "es6",
         "declaration": true,
-        "outFile": "index.declaration.js"
+        "outFile": "js-hierarchy.declaration.js"
     },
     "include": [
-        "index.ts"
+        "js-hierarchy.ts"
     ],
     "exclude": [
-        "index.d.ts",
+        "js-hierarchy.d.ts",
         "test/**/*.d.ts"
     ]
 }

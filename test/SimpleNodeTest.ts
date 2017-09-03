@@ -1,5 +1,5 @@
 import 'mocha';
-import {Node} from '../index';
+import {Node} from '../js-hierarchy';
 import {NodeNotFoundError} from '../lib/error/NodeNotFoundError';
 import {SimpleNode} from '../lib/SimpleNode';
 import {DataNotFoundError} from '../lib/error/DataNotFoundError';

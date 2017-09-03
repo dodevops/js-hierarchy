@@ -1,9 +1,14 @@
 # js-hierarchy
 
 [![Sauce Test Status](https://saucelabs.com/buildstatus/dodevops)](https://saucelabs.com/u/dodevops)
+[![Travis](https://img.shields.io/travis/dodevops/js-hierarchy.svg)](https://travis-ci.org/dodevops/js-hierarchy)
+[![node](https://img.shields.io/node/v/js-hierarchy.svg)](https://www.npmjs.com/package/js-hierarchy)
+[![npm](https://img.shields.io/npm/v/js-hierarchy.svg)](https://www.npmjs.com/package/js-hierarchy)
+
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/dodevops.svg)](https://saucelabs.com/u/dodevops)
 
-Proper Javascript and Typescript hierarchy management.
+Proper Javascript and Typescript hierarchy management for Node, Typescript
+and the Browser.
 
 ## Introduction
 
@@ -48,7 +53,7 @@ var rootNode = new hierarchy.SimpleNode();
 Install the module and include the browser script:
 
 ```html
-<script src="node_modules/js-hierarchy/browser.js"></script>
+<script src="node_modules/js-hierarchy/browser.min.js"></script>
 ```
 
 With this the global namespace will include a "jshierarchy" object:

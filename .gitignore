@@ -154,10 +154,11 @@ fabric.properties
 .tscache
 lib/**/*.js
 lib/**/*.js.map
-index.js
-index.js.map
+js-hierarchy.js
+js-hierarchy.js.map
 test/**/*.js
 test/**/*.js.map
 *.d.ts
 browser.js
+browser.min.js
 test/test.browser.js

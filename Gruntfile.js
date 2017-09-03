@@ -63,10 +63,10 @@ module.exports = function (grunt) {
             },
             files: {
                 src: [
-                    'index.ts',
+                    'js-hierarchy.ts',
                     'test/**/*.ts',
                     'lib/**/*.ts',
-                    '!index.d.ts',
+                    '!js-hierarchy.d.ts',
                     '!test/**/*.d.ts',
                     '!lib/**/*.d.ts'
                 ]
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
         },
         clean: {
             coverage: ['test/coverage'],
-            declaration: ['index.declaration.*']
+            declaration: ['js-hierarchy.declaration.*']
         },
         ts: {
             default: {
@@ -95,12 +95,12 @@ module.exports = function (grunt) {
             },
             declaration: {
                 files: {
-                    'index.d.ts': 'index.declaration.d.ts'
+                    'js-hierarchy.d.ts': 'js-hierarchy.declaration.d.ts'
                 }
             }
         },
         instrument: {
-            files: ['index.js', 'lib/**/*.js'],
+            files: ['js-hierarchy.js', 'lib/**/*.js'],
             options: {
                 lazy: true,
                 basePath: 'test/coverage/instrument/'
@@ -146,9 +146,8 @@ module.exports = function (grunt) {
                     name: 'js-hierarchy',
                     target: 'es6',
                     readme: 'README.md',
-                    exclude: '**/test/**/*'
-                },
-                src: ['./index.ts', './lib/**/*.ts']
+                    exclude: 'test/**/*'
+                }
             }
         },
         browserify: {
@@ -165,7 +164,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    'browser.js': ['index.ts']
+                    'browser.js': ['js-hierarchy.ts']
                 }
             },
             test: {
@@ -179,13 +178,6 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'test/test.browser.js': ['test/**/*.ts']
-                }
-            }
-        },
-        uglify: {
-            default: {
-                files: {
-                    'browser.min.js': ['browser.js']
                 }
             }
         },
@@ -213,6 +205,14 @@ module.exports = function (grunt) {
                     build: package.version
                 }
             }
+        },
+        exec: {
+            uglify: 'node_modules/.bin/uglifyjs --output browser.min.js --compress --mangle -- browser.js'
+        },
+        coveralls: {
+            default: {
+                src: 'test/coverage/reports/lcov.info'
+            }
         }
     });
 
@@ -225,9 +225,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-typedoc');
     grunt.loadNpmTasks('grunt-browserify');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-saucelabs');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-coveralls');
 
     grunt.registerTask(
         'build',
@@ -277,7 +278,7 @@ module.exports = function (grunt) {
             'clean:declaration',
             'typedoc',
             'browserify:default',
-            'uglify'
+            'exec:uglify'
         ]
     );
 
