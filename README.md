@@ -189,7 +189,8 @@ AbstractNode already has all needed features, so you can just
 concentrate on the needed features without caring about the basic
 ones.
 
-Please read the API documentation for details
+Please read the
+[API documentation](https://dodevops.github.io/js-hierarchy/doc/) for details.
 
 ## Building
 
