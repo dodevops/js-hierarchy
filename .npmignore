@@ -2,8 +2,8 @@
 .npmignore
 .gitignore
 .travis.yml
-*.ts
-!js-hierarchy.d.ts
+**/*.ts
+!**/*.d.ts
 test
 tsconfig.declaration.json
 tsconfig.json

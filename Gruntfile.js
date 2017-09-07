@@ -273,9 +273,6 @@ module.exports = function (grunt) {
         'release',
         [
             'test',
-            'ts:generateDeclaration',
-            'copy:declaration',
-            'clean:declaration',
             'typedoc',
             'browserify:default',
             'exec:uglify'
