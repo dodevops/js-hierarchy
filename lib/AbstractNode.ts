@@ -13,10 +13,11 @@ import {InvalidDirectionError} from './error/InvalidDirectionError';
 import {NodeNotFoundError} from './error/NodeNotFoundError';
 import {DataNotFoundError} from './error/DataNotFoundError';
 import * as loglevel from 'loglevel';
+import Bluebird = require('bluebird');
 
 export abstract class AbstractNode implements Node {
 
-    private _log: Log = null;
+    private _log: loglevel.Logger = null;
 
     private _children: Node[] = [];
     private _parent: Node = null;
@@ -31,7 +32,7 @@ export abstract class AbstractNode implements Node {
     }
 
     public getChildren(): Node[] {
-        if (this._log.getLevel() === LogLevel.TRACE) {
+        if (this._log.getLevel() === loglevel.levels.TRACE) {
             let description: string[] = [];
 
             for (let child of this._children) {
@@ -44,7 +45,7 @@ export abstract class AbstractNode implements Node {
     }
 
     public addChild(child: Node, position?: number): Node {
-        if (this._log.getLevel() <= LogLevel.DEBUG) {
+        if (this._log.getLevel() <= loglevel.levels.DEBUG) {
             this._log.debug(`Adding child ${child.toJSON()}`);
             this._log.debug(`Setting child's parent to ${this.toJSON()}`);
         }
@@ -75,14 +76,16 @@ export abstract class AbstractNode implements Node {
                 throw error;
             }
             this._log.debug(`Removing child at position ${<number> child}`);
-            if (this._log.getLevel() <= LogLevel.DEBUG) {
+            if (this._log.getLevel() <= this._log.levels.DEBUG) {
                 this._log.debug(this._children[<number> child].toJSON());
             }
             this._children.splice(<number> child, 1);
         } else {
-            if (this._log.getLevel() <= LogLevel.DEBUG) {
+            if (this._log.getLevel() <= this._log.levels.DEBUG) {
                 this._log.debug(
-                    `Removing child ${(<Node> child).toJSON()}`
+                    `Removing child ${(
+                        <Node> child
+                    ).toJSON()}`
                 );
             }
             this._children.splice(this.findChild(<Node> child), 1);
@@ -90,7 +93,7 @@ export abstract class AbstractNode implements Node {
     }
 
     public findChild(child: Node): number {
-        if (this._log.getLevel() === LogLevel.TRACE) {
+        if (this._log.getLevel() === this._log.levels.TRACE) {
             this._log.trace(`Finding child ${child.toJSON()}`);
         }
         for (let i = 0; i < this._children.length; i++) {
@@ -108,14 +111,14 @@ export abstract class AbstractNode implements Node {
     }
 
     public getParent(): Node {
-        if (this._log.getLevel() === LogLevel.TRACE) {
+        if (this._log.getLevel() === this._log.levels.TRACE) {
             this._log.trace(`Returning parent ${this._parent.toJSON()}`);
         }
         return this._parent;
     }
 
     public setParent(node: Node): void {
-        if (this._log.getLevel() === LogLevel.TRACE) {
+        if (this._log.getLevel() === this._log.levels.TRACE) {
             this._log.trace(`Setting parent to ${node.toJSON()}`);
         }
         this._parent = node;
@@ -133,7 +136,7 @@ export abstract class AbstractNode implements Node {
     public walk(
         direction: Direction | Direction[],
         action: ActionFunction
-    ): void {
+    ): Bluebird<void> {
         let _direction: Direction[];
         if (!Array.isArray(direction)) {
             _direction = [direction];
@@ -141,31 +144,39 @@ export abstract class AbstractNode implements Node {
             _direction = direction;
         }
 
-        for (let currentDirection of _direction) {
-            let walker: Walker;
-            switch (currentDirection) {
-                case Direction.down:
-                    walker = new DownWalker();
-                    break;
-                case Direction.left:
-                    walker = new LeftWalker();
-                    break;
-                case Direction.right:
-                    walker = new RightWalker();
-                    break;
-                case Direction.up:
-                    walker = new UpWalker();
-                    break;
-                default:
-                    throw new InvalidDirectionError(
-                        `Invalid direction ${currentDirection}`
-                    );
-            }
-            this._log.debug(
-                `Walking this node using ${walker.constructor.name}`
-            );
-            walker.walk(this, action);
-        }
+        return Bluebird.reduce(
+            _direction,
+            (total, currentDirection) => {
+                let walker: Walker;
+                switch (currentDirection) {
+                    case Direction.down:
+                        walker = new DownWalker();
+                        break;
+                    case Direction.left:
+                        walker = new LeftWalker();
+                        break;
+                    case Direction.right:
+                        walker = new RightWalker();
+                        break;
+                    case Direction.up:
+                        walker = new UpWalker();
+                        break;
+                    default:
+                        return Bluebird.reject(
+                            new InvalidDirectionError(
+                                `Invalid direction ${currentDirection}`
+                            )
+                        );
+                }
+                this._log.debug(
+                    `Walking this node using ${walker.constructor.name}`
+                );
+                return walker.walk(this, action)
+                    .thenReturn([]);
+            },
+            []
+        ).thenReturn();
+
     }
 
     public setData(key: string, value: any): Node {

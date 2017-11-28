@@ -1,11 +1,12 @@
 import 'mocha';
-import {Node} from '../js-hierarchy';
+import {Node} from '../lib/Node';
 import {makeTestHierarchy} from './TestRessources';
 import {Direction} from '../lib/Direction';
-import {InvalidDirectionError} from '../lib/error/InvalidDirectionError';
-import chai = require('chai');
+import * as chai from 'chai';
+import chaiAsPromised = require('chai-as-promised');
+import Bluebird = require('bluebird');
 
-let should = chai.should();
+chai.use(chaiAsPromised);
 
 // for Browser tests
 
@@ -99,46 +100,49 @@ describe('Node#walk', () => {
 
     for (let checkNode of checkNodes) {
         describe(`using ${checkNode.description}`, () => {
-            it('should find all expected nodes', function (done) {
+            it('should find all expected nodes', function () {
                 let nodeId = 0;
 
-                checkNode.node.walk(
+                return checkNode.node.walk(
                     checkNode.direction,
-                    (node: Node) => {
-                        node.getData('name')
-                            .should.equal(
-                            checkNode.expectedNodes[nodeId],
+                    (node: Node): Bluebird<void> => {
+                        chai.expect(
+                            node.getData('name'),
                             'Invalid node found'
+                        )
+                            .to.equal(
+                            checkNode.expectedNodes[nodeId]
                         );
                         nodeId++;
+                        return Bluebird.resolve();
+                    }
+                ).then(
+                    () => {
+
+                        chai.expect(
+                            nodeId,
+                            'Not all nodes found'
+                        )
+                            .to.equal(
+                            checkNode.expectedNodes.length
+                        );
                     }
                 );
-
-                nodeId
-                    .should.equal(
-                    checkNode.expectedNodes.length,
-                    'Not all nodes found'
-                );
-
-                done();
             });
         });
     }
 
-    it('should throw when using an invalid direction', function (done) {
+    it('should throw when using an invalid direction', function () {
         let rootNode = makeTestHierarchy();
 
-        should.throw(
-            () => {
-                rootNode.walk(9, (node: Node) => {
-                    // nothing
-                });
-            },
-            InvalidDirectionError,
-            'Invalid direction 9',
+        return chai.expect(
+            rootNode.walk(9, (node: Node): Bluebird<void> => {
+                return Bluebird.resolve();
+            }),
             'Did not throw'
-        );
-
-        done();
+        )
+            .to.be.rejectedWith(
+                'Invalid direction 9',
+            );
     });
 });

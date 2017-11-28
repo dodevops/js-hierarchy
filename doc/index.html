@@ -148,6 +148,7 @@ rootNode.addChild(childNode);
 
 rootNode.walk(Direction.down, (node) =&gt; {
     <span class="hljs-built_in">console</span>.log(node.getData(<span class="hljs-string">'name'</span>));
+    <span class="hljs-keyword">return</span> Bluebird.resolve();
 });
 <span class="hljs-comment">// will output both 'child' and 'grandChild'</span>
 </code></pre>
@@ -188,6 +189,10 @@ down  </span>|<span class="hljs-string">                                     </s
 				<p>You can also specify an array of directions, meaning that, after the
 					last node has been reached in the first direction, the next direction
 				is walked and so on.</p>
+				<p>The walk method runs asynchronously using <a href="https://promisesaplus.com/">Promises</a>
+				in the <a href="http://bluebirdjs.com/docs/getting-started.html">Bluebird implementation</a>.</p>
+				<p>Thus, the walker returns a fulfilled promise, if every node was walked. Also, the
+				supplied user function has to return a promise.</p>
 				<h2 id="extending">Extending</h2>
 				<p>If you need a specialized nodes with functions suitable for your
 					usage, you should extend &quot;AbstractNode&quot; and implement &quot;Node&quot;.
@@ -248,9 +253,6 @@ down  </span>|<span class="hljs-string">                                     </s
 					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_js_hierarchy_.html">"js-<wbr>hierarchy"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="modules/_lib_abstractnode_.html">"lib/<wbr>Abstract<wbr>Node"</a>

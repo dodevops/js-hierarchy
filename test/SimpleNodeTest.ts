@@ -1,12 +1,8 @@
 import 'mocha';
-import {Node} from '../js-hierarchy';
-import {NodeNotFoundError} from '../lib/error/NodeNotFoundError';
+import {Node} from '../lib/Node';
 import {SimpleNode} from '../lib/SimpleNode';
-import {DataNotFoundError} from '../lib/error/DataNotFoundError';
 import {makeTestHierarchy} from './TestRessources';
 import chai = require('chai');
-
-let should = chai.should();
 
 // for Browser tests
 
@@ -20,202 +16,195 @@ if (typeof window !== 'undefined') {
 
 describe(
     'SimpleNode', function () {
-        it('should instantiate just fine', function (done) {
+        it('should instantiate just fine', function () {
             let component = new SimpleNode();
-            should.exist(component, 'Node did not instantiate!');
-            done();
+            chai.expect(
+                component,
+                'Node did not instantiate!'
+            ).to.exist;
         });
-        it('can be constructed into a tree', function (done) {
+        it('can be constructed into a tree', function () {
 
             let rootNode = makeTestHierarchy();
 
-            should.equal(
+            chai.expect(
                 rootNode.isRoot(),
-                true,
                 'Root node is not root node'
-            );
+            ).to.be.true;
 
-            should.equal(
+            chai.expect(
                 rootNode.getChildren()[1].isRoot(),
-                false,
                 'Child not is a root node'
-            );
+            ).to.be.false;
 
-            rootNode.getChildren()[0].getParent()
-                .should.equal(
-                rootNode,
+            chai.expect(
+                rootNode.getChildren()[0].getParent(),
                 'Invalid parent'
-            );
+            ).to.equal(
+                rootNode);
 
-            rootNode.getChildren().length
-                .should.equal(
-                3,
+            chai.expect(
+                rootNode.getChildren().length,
                 'Invalid number of root children'
-            );
+            ).to.equal(
+                3);
 
-            rootNode.getChildren()[0].getData('name')
-                .should.equal(
-                'test1',
+            chai.expect(
+                rootNode.getChildren()[0].getData('name'),
                 'Invalid node'
-            );
+            ).to.equal(
+                'test1');
 
-            rootNode.getChildren()[1].getData('name')
-                .should.equal(
-                'test2',
+            chai.expect(
+                rootNode.getChildren()[1].getData('name'),
                 'Invalid node'
-            );
+            ).to.equal(
+                'test2');
 
-            rootNode.getChildren()[2].getData('name')
-                .should.equal(
-                'test3',
+            chai.expect(
+                rootNode.getChildren()[2].getData('name'),
                 'Invalid node'
-            );
+            ).to.equal(
+                'test3');
 
             let testNode3 = rootNode.getChildren()[2];
 
-            testNode3.getChildren().length
-                .should.equal(
-                2,
+            chai.expect(
+                testNode3.getChildren().length,
                 'Invalid number of test node 3 children'
-            );
+            ).to.equal(
+                2);
 
-            testNode3.getChildren()[0].getData('name').should.equal(
-                'test3.1',
+
+            chai.expect(
+                testNode3.getChildren()[0].getData('name'),
                 'Invalid node'
-            );
+            ).to.equal(
+                'test3.1');
 
-            testNode3.getChildren()[1].getData('name').should.equal(
-                'test3.2',
+            chai.expect(
+                testNode3.getChildren()[1].getData('name'),
                 'Invalid node'
-            );
-
-            done();
+            ).to.equal(
+                'test3.2');
 
         });
         describe('#findChild', () => {
-            it('should find a child', function (done) {
+            it('should find a child', function () {
                 let rootNode = makeTestHierarchy();
 
-                rootNode.findChild(rootNode.getChildren()[1])
-                    .should.equal(
-                    1,
+                chai.expect(
+                    rootNode.findChild(rootNode.getChildren()[1]),
                     'Invalid node returned'
-                );
-
-                done();
+                ).to.equal(
+                    1);
             });
-            it('should throw when not finding a node', function (done) {
+            it('should throw when not finding a node', function () {
 
                 let rootNode = makeTestHierarchy();
 
-                should.throw(
+                chai.expect(
                     () => {
                         rootNode.findChild(<Node> new SimpleNode());
                     },
-                    NodeNotFoundError,
-                    'Invalid Node {"_class":"SimpleNode","_isRoot":true,'
-                    + '"_data":{},"_children":[]}',
                     'Did not throw'
+                )
+                    .to.throw(
+                    'Invalid Node {"_class":"SimpleNode","_isRoot":true,'
+                    + '"_data":{},"_children":[]}'
                 );
-
-                done();
 
             });
         });
 
         describe('#removeChild', () => {
-            it('should remove a child by a node', function (done) {
+            it('should remove a child by a node', function () {
 
                 let rootNode = makeTestHierarchy();
 
                 rootNode.removeChild(rootNode.getChildren()[1]);
 
-                rootNode.getChildren().length
-                    .should.equal(
-                    2,
+                chai.expect(
+                    rootNode.getChildren().length,
                     'Node was not removed'
-                );
+                ).to.equal(
+                    2);
 
-                rootNode.getChildren()[0].getData('name')
-                    .should.equal(
-                    'test1',
+                chai.expect(
+                    rootNode.getChildren()[0].getData('name'),
                     'Invalid hierarchy'
-                );
+                ).to.equal(
+                    'test1');
 
-                rootNode.getChildren()[1].getData('name')
-                    .should.equal(
-                    'test3',
+                chai.expect(
+                    rootNode.getChildren()[1].getData('name'),
                     'Invalid hierarchy'
-                );
-
-                done();
+                ).to.equal(
+                    'test3');
 
             });
 
-            it('should remove a child specified by id', function (done) {
+            it('should remove a child specified by id', function () {
                 let rootNode = makeTestHierarchy();
 
                 rootNode.removeChild(1);
 
-                rootNode.getChildren().length
-                    .should.equal(
-                    2,
+                chai.expect(
+                    rootNode.getChildren().length,
                     'Did not remove'
-                );
+                ).to.equal(
+                    2);
 
-                rootNode.getChildren()[0].getData('name')
-                    .should.equal(
-                    'test1',
+                chai.expect(
+                    rootNode.getChildren()[0].getData('name'),
                     'Invalid hierarchy'
-                );
+                ).to.equal(
+                    'test1');
 
-                rootNode.getChildren()[1].getData('name')
-                    .should.equal(
-                    'test3',
+                chai.expect(
+                    rootNode.getChildren()[1].getData('name'),
                     'Invalid hierarchy'
-                );
-
-                done();
+                ).to.equal(
+                    'test3');
             });
 
-            it('should throw when not finding a child by id', function (done) {
+            it('should throw when not finding a child by id', function () {
                 let rootNode = makeTestHierarchy();
 
-                should.throw(
+                chai.expect(
                     () => {
                         rootNode.removeChild(99);
                     },
-                    NodeNotFoundError,
-                    'Node with id 99 was not found',
                     'Did not throw'
+                )
+                    .to.throw(
+                    'Node with id 99 was not found'
                 );
-                done();
 
             });
 
             it(
                 'should throw when not finding a child by a node',
-                function (done) {
+                function () {
                     let rootNode = makeTestHierarchy();
 
-                    should.throw(
+                    chai.expect(
                         () => {
                             rootNode.removeChild(new SimpleNode());
                         },
-                        NodeNotFoundError,
-                        'Invalid Node {"_class":"SimpleNode",'
-                        + '"_isRoot":true,"_data":{},"_children":[]}',
                         'Did not throw'
+                    )
+                        .to.throw(
+                        'Invalid Node {"_class":"SimpleNode",'
+                        + '"_isRoot":true,"_data":{},"_children":[]}'
                     );
-
-                    done();
                 }
             );
 
         });
 
         describe('#addChild', () => {
-            it('should add a node between two existing nodes', function (done) {
+            it('should add a node between two existing nodes', function () {
                 let rootNode = makeTestHierarchy();
 
                 rootNode.addChild(
@@ -223,79 +212,72 @@ describe(
                     1
                 );
 
-                rootNode.getChildren()[1].getData('name')
-                    .should.equal(
-                    'testbetween',
+                chai.expect(
+                    rootNode.getChildren()[1].getData('name'),
                     'Did not add'
-                );
+                ).to.equal(
+                    'testbetween');
 
-                rootNode.getChildren().length
-                    .should.equal(
-                    4,
+                chai.expect(
+                    rootNode.getChildren().length,
                     'Did not add'
-                );
+                ).to.equal(
+                    4);
 
-                rootNode.getChildren()[0].getData('name')
-                    .should.equal(
-                    'test1',
+                chai.expect(
+                    rootNode.getChildren()[0].getData('name'),
                     'Invalid hierarchy'
-                );
+                ).to.equal(
+                    'test1');
 
-                rootNode.getChildren()[2].getData('name')
-                    .should.equal(
-                    'test2',
+                chai.expect(
+                    rootNode.getChildren()[2].getData('name'),
                     'Invalid hierarchy'
-                );
-
-                done();
+                ).to.equal(
+                    'test2');
 
             });
         });
 
         describe('#toJSON', () => {
-            it('should represent the node', function (done) {
+            it('should represent the node', function () {
                 let rootNode = makeTestHierarchy();
 
-                JSON.parse(rootNode.toJSON())._class
-                    .should.equal(
-                    'SimpleNode',
+                chai.expect(
+                    JSON.parse(rootNode.toJSON())._class,
                     'Invalid JSON represenation'
-                );
-
-                done();
+                ).to.equal(
+                    'SimpleNode');
             });
         });
 
         describe('#getData/#setData', () => {
-            it('should set/get arbitrary data', function (done) {
+            it('should set/get arbitrary data', function () {
                 let rootNode = makeTestHierarchy();
 
                 rootNode.setData('testkey', 'testvalue');
 
-                rootNode.getData('testkey')
-                    .should.equal(
-                    'testvalue',
+                chai.expect(
+                    rootNode.getData('testkey'),
                     'Invalid value'
-                );
-
-                done();
+                ).to.equal(
+                    'testvalue');
             });
         });
 
         describe('#getData', () => {
-            it('should throw on an invalid key', function (done) {
+            it('should throw on an invalid key', function () {
                 let rootNode = makeTestHierarchy();
 
-                should.throw(
+                chai.expect(
                     () => {
                         rootNode.getData('INVALIDKEY');
                     },
-                    DataNotFoundError,
-                    'No data found with key INVALIDKEY',
                     'Did not throw'
+                )
+                    .to.throw(
+                    'No data found with key INVALIDKEY'
                 );
-
-                done();
             });
         });
     }

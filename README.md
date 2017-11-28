@@ -135,6 +135,7 @@ rootNode.addChild(childNode);
 
 rootNode.walk(Direction.down, (node) => {
     console.log(node.getData('name'));
+    return Bluebird.resolve();
 });
 // will output both 'child' and 'grandChild'
 ```
@@ -180,6 +181,12 @@ Now, these directions are available:
 You can also specify an array of directions, meaning that, after the
 last node has been reached in the first direction, the next direction
 is walked and so on.
+
+The walk method runs asynchronously using [Promises](https://promisesaplus.com/)
+in the [Bluebird implementation](http://bluebirdjs.com/docs/getting-started.html).
+
+Thus, the walker returns a fulfilled promise, if every node was walked. Also, the
+supplied user function has to return a promise.
 
 ## Extending
 

@@ -3,6 +3,7 @@
  */
 import {ActionFunction} from '../ActionFunction';
 import {Node} from '../Node';
+import Bluebird = require('bluebird');
 
 /**
  * A interface for a Walker implementation
@@ -14,5 +15,5 @@ export interface Walker {
      * @param {Node} node
      * @param {ActionFunction} action
      */
-    walk(node: Node, action: ActionFunction): void;
+    walk(node: Node, action: ActionFunction): Bluebird<void>;
 }

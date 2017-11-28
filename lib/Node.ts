@@ -3,6 +3,7 @@
  */
 import {ActionFunction} from './ActionFunction';
 import {Direction} from './Direction';
+import Bluebird = require('bluebird');
 
 export interface Node {
     /**
@@ -72,7 +73,10 @@ export interface Node {
      * @throws [[InvalidDirectionError]]
      * @throws [[NodeNotFoundError]]
      */
-    walk(direction: Direction | Direction[], action: ActionFunction): void;
+    walk(
+        direction: Direction | Direction[],
+        action: ActionFunction
+    ): Bluebird<void>;
 
     /**
      * Set arbitrary data to the node

@@ -7,5 +7,6 @@
  */
 
 import {Node} from './Node';
+import Bluebird = require('bluebird');
 
-export type ActionFunction = (node: Node) => void;
+export type ActionFunction = (node: Node) => Bluebird<void>;

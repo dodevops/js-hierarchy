@@ -1,7 +1,7 @@
 {
   "name": "js-hierarchy",
   "description": "Proper hierarchy management for Node, Typescript and the Browser.",
-  "version": "1.0.8",
+  "version": "2.0.0",
   "author": {
     "name": "Dennis Ploeger",
     "email": "develop@dieploegers.de"
@@ -10,19 +10,16 @@
     "type": "git",
     "url": "git://github.com/dploeger/js-hierarchy.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "undefined/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "MIT",
   "dependencies": {
-    "loglevel": "^1.4.1"
+    "loglevel": "^1.4.1",
+    "bluebird": "^3.5.1"
   },
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/loglevel": "^1.4.29",
     "@types/mocha": "^2.2.37",
+    "@types/bluebird": "^3.5.18",
     "chai": "^3.5.0",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
@@ -44,7 +41,9 @@
     "tslint": "3.15.1",
     "typedoc": "^0.8.0",
     "typescript": "^2.0.10",
-    "uglify-es": "github:mishoo/UglifyJS2#harmony"
+    "uglify-es": "github:mishoo/UglifyJS2#harmony",
+    "chai-as-promised": "^7.1.1",
+    "@types/chai-as-promised": "^7.1.0"
   },
   "keywords": [
     "hierarchy",
