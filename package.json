@@ -1,14 +1,14 @@
 {
   "name": "js-hierarchy",
   "description": "Proper hierarchy management for Node, Typescript and the Browser.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": {
     "name": "Dennis Ploeger",
-    "email": "develop@dieploegers.de"
+    "email": "dennis.ploeger@kps.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/dploeger/js-hierarchy.git"
+    "url": "git://github.com/dodevops/js-hierarchy.git"
   },
   "license": "MIT",
   "dependencies": {
