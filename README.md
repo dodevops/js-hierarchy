@@ -5,7 +5,7 @@
 [![node](https://img.shields.io/node/v/js-hierarchy.svg)](https://www.npmjs.com/package/js-hierarchy)
 [![npm](https://img.shields.io/npm/v/js-hierarchy.svg)](https://www.npmjs.com/package/js-hierarchy)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/js-hierarchy.svg)](https://saucelabs.com/u/dodevops)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/js-hierarchy.svg)](https://saucelabs.com/u/js-hierarchy)
 
 Proper hierarchy management for Node, Typescript and the Browser.
 

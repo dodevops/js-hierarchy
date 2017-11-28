@@ -44,11 +44,6 @@ module.exports = function (grunt) {
             version: '14.14393'
         },
         {
-            browserName: 'MicrosoftEdge',
-            platform: 'Windows 10',
-            version: '13.10586'
-        },
-        {
             browserName: 'safari',
             platform: 'macOS 10.12',
             version: '10.0'
