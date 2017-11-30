@@ -17,7 +17,7 @@ import Bluebird = require('bluebird');
 
 export abstract class AbstractNode implements Node {
 
-    private _log: loglevel.Logger = null;
+    protected _log: loglevel.Logger = null;
 
     private _children: Node[] = [];
     private _parent: Node = null;
