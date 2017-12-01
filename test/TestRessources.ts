@@ -1,4 +1,7 @@
 /**
+ * @module Test
+ */
+/**
  * Utility ressources for tests
  */
 

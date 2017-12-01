@@ -1,5 +1,7 @@
 /**
- * A walker, that climbs the hierarchy down
+ * @module js-hierarchy
+ */
+/**
  */
 import {Walker} from './Walker';
 import {Node} from '../Node';
@@ -18,18 +20,17 @@ export class DownWalker implements Walker {
             log.trace(`Walking node ${node.toJSON()}`);
         }
 
-        if (!node.isRoot()) {
-            log.trace('Have not reached root. Calling action.');
-            return action(node.getParent())
-                .then(
-                    () => {
-                        log.trace('Walking further down.');
+        return action(node)
+            .then(
+                () => {
+                    if (!node.isRoot()) {
+                        log.trace('Have not reached root. Walking further down.');
                         return this.walk(node.getParent(), action);
+                    } else {
+                        return Bluebird.resolve();
                     }
-                );
-        }
-
-        return Bluebird.resolve();
+                }
+            );
     }
 
 }

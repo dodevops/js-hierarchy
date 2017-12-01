@@ -1,5 +1,7 @@
 /**
- * A walker, that climbs the hierarchy up
+ * @module js-hierarchy
+ */
+/**
  */
 import {Walker} from './Walker';
 import {Node} from '../Node';

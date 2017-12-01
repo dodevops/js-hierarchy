@@ -1,5 +1,7 @@
 /**
- * A starting point Node implementation to extend from
+ * @module js-hierarchy
+ */
+/**
  */
 import {Node} from './Node';
 import {Direction} from './Direction';
@@ -14,7 +16,11 @@ import {NodeNotFoundError} from './error/NodeNotFoundError';
 import {DataNotFoundError} from './error/DataNotFoundError';
 import * as loglevel from 'loglevel';
 import Bluebird = require('bluebird');
+import {RootUpWalker} from './walker/RootUpWalker';
 
+/**
+ * A starting point Node implementation to extend from
+ */
 export abstract class AbstractNode implements Node {
 
     protected _log: loglevel.Logger = null;
@@ -160,6 +166,9 @@ export abstract class AbstractNode implements Node {
                         break;
                     case Direction.up:
                         walker = new UpWalker();
+                        break;
+                    case Direction.rootUp:
+                        walker = new RootUpWalker();
                         break;
                     default:
                         return Bluebird.reject(

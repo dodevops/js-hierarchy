@@ -124,8 +124,9 @@ Most tree-like structures are used to store hierarchical data
 and walk the tree from one node to the upper, lower or sibling nodes.
 
 The "walk" method of a node will just do that and call a user
-defined function on each node it encounters. Please note, that this
-will not include the original node, the walk method was called from.
+defined function on each node it encounters. Please note, that only the
+directions traversing the tree vertically (Down, Up, and RootDown)
+will call the action on the original node.
 
 ```javascript
 rootNode = new SimpleNode({'name': 'root'});
@@ -133,11 +134,11 @@ childNode = new SimpleNode({'name': 'child'});
 childNode.addChild(new SimpleNode({'name': 'grandChild'}));
 rootNode.addChild(childNode);
 
-rootNode.walk(Direction.down, (node) => {
+rootNode.walk(Direction.up, (node) => {
     console.log(node.getData('name'));
     return Bluebird.resolve();
 });
-// will output both 'child' and 'grandChild'
+// will output 'root', 'child' and 'grandChild'
 ```
 
 Please look at this example tree:
@@ -177,6 +178,10 @@ Now, these directions are available:
 * right: Walks all siblings (the parent node's children) from the current
   node to the right (children having a larger array index) until the
   last node is reached (from child2 to child3)
+* rootUp: Walks the same way "up" would go, but will only call the action
+  function on its way up. For example, when called from grandchild 3.1, the
+  action function will encounter "root" first, then "child3" and finally
+  "grandchild 3.1".
 
 You can also specify an array of directions, meaning that, after the
 last node has been reached in the first direction, the next direction

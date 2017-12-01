@@ -1,5 +1,7 @@
 /**
- * A node implementation offering basic features
+ * @module js-hierarchy
+ */
+/**
  */
 
 import {AbstractNode} from './AbstractNode';

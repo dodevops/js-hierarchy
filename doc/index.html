@@ -139,18 +139,19 @@ rootNode.setData(<span class="hljs-string">'mykey'</span>, <span class="hljs-str
 				<p>Most tree-like structures are used to store hierarchical data
 				and walk the tree from one node to the upper, lower or sibling nodes.</p>
 				<p>The &quot;walk&quot; method of a node will just do that and call a user
-					defined function on each node it encounters. Please note, that this
-				will not include the original node, the walk method was called from.</p>
+					defined function on each node it encounters. Please note, that only the
+					directions traversing the tree vertically (Down, Up, and RootDown)
+				will call the action on the original node.</p>
 				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode({<span class="hljs-string">'name'</span>: <span class="hljs-string">'root'</span>});
 childNode = <span class="hljs-keyword">new</span> SimpleNode({<span class="hljs-string">'name'</span>: <span class="hljs-string">'child'</span>});
 childNode.addChild(<span class="hljs-keyword">new</span> SimpleNode({<span class="hljs-string">'name'</span>: <span class="hljs-string">'grandChild'</span>}));
 rootNode.addChild(childNode);
 
-rootNode.walk(Direction.down, (node) =&gt; {
+rootNode.walk(Direction.up, (node) =&gt; {
     <span class="hljs-built_in">console</span>.log(node.getData(<span class="hljs-string">'name'</span>));
     <span class="hljs-keyword">return</span> Bluebird.resolve();
 });
-<span class="hljs-comment">// will output both 'child' and 'grandChild'</span>
+<span class="hljs-comment">// will output 'root', 'child' and 'grandChild'</span>
 </code></pre>
 				<p>Please look at this example tree:</p>
 				<pre><code>                                    +----------------+
@@ -185,6 +186,10 @@ down  </span>|<span class="hljs-string">                                     </s
 					<li>right: Walks all siblings (the parent node&#39;s children) from the current
 						node to the right (children having a larger array index) until the
 					last node is reached (from child2 to child3)</li>
+					<li>rootUp: Walks the same way &quot;up&quot; would go, but will only call the action
+						function on its way up. For example, when called from grandchild 3.1, the
+						action function will encounter &quot;root&quot; first, then &quot;child3&quot; and finally
+					&quot;grandchild 3.1&quot;.</li>
 				</ul>
 				<p>You can also specify an array of directions, meaning that, after the
 					last node has been reached in the first direction, the next direction
@@ -243,55 +248,13 @@ down  </span>|<span class="hljs-string">                                     </s
 						<span>Internals</span>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_test_simplenodetest_.html">"test/<wbr>Simple<wbr>Node<wbr>Test"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_test_testressources_.html">"test/<wbr>Test<wbr>Ressources"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_test_walkertest_.html">"test/<wbr>Walker<wbr>Test"</a>
+						<a href="modules/test.html">Test</a>
 					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_abstractnode_.html">"lib/<wbr>Abstract<wbr>Node"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_actionfunction_.html">"lib/<wbr>Action<wbr>Function"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_direction_.html">"lib/<wbr>Direction"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_node_.html">"lib/<wbr>Node"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_simplenode_.html">"lib/<wbr>Simple<wbr>Node"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_error_datanotfounderror_.html">"lib/error/<wbr>Data<wbr>Not<wbr>Found<wbr>Error"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_error_invaliddirectionerror_.html">"lib/error/<wbr>Invalid<wbr>Direction<wbr>Error"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_error_nodenotfounderror_.html">"lib/error/<wbr>Node<wbr>Not<wbr>Found<wbr>Error"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_walker_downwalker_.html">"lib/walker/<wbr>Down<wbr>Walker"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_walker_leftwalker_.html">"lib/walker/<wbr>Left<wbr>Walker"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_walker_rightwalker_.html">"lib/walker/<wbr>Right<wbr>Walker"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_walker_upwalker_.html">"lib/walker/<wbr>UpWalker"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_lib_walker_walker_.html">"lib/walker/<wbr>Walker"</a>
+						<a href="modules/js_hierarchy.html">js-<wbr>hierarchy</a>
 					</li>
 				</ul>
 			</nav>

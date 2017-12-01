@@ -1,5 +1,7 @@
 /**
- * A interface for a Walker implementation
+ * @module js-hierarchy
+ */
+/**
  */
 import {ActionFunction} from '../ActionFunction';
 import {Node} from '../Node';

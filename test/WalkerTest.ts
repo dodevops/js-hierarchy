@@ -1,3 +1,9 @@
+/**
+ * @module Test
+ */
+/**
+ * Test walkers
+ */
 import 'mocha';
 import {Node} from '../lib/Node';
 import {makeTestHierarchy} from './TestRessources';
@@ -25,8 +31,19 @@ describe('Node#walk', () => {
             description: 'DownWalker',
             direction: Direction.down,
             expectedNodes: [
+                'test3.1',
                 'test3',
                 'root'
+            ]
+        },
+        {
+            node: makeTestHierarchy().getChildren()[2].getChildren()[0],
+            description: 'RootUpWalker',
+            direction: Direction.rootUp,
+            expectedNodes: [
+                'root',
+                'test3',
+                'test3.1'
             ]
         },
         {
@@ -75,6 +92,7 @@ describe('Node#walk', () => {
             direction: [Direction.left, Direction.down],
             expectedNodes: [
                 'test1',
+                'test2',
                 'root'
             ]
         },
@@ -93,6 +111,7 @@ describe('Node#walk', () => {
             direction: [Direction.right, Direction.down],
             expectedNodes: [
                 'test3',
+                'test2',
                 'root'
             ]
         }

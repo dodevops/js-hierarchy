@@ -46,7 +46,7 @@ module.exports = function (grunt) {
         {
             browserName: 'safari',
             platform: 'macOS 10.12',
-            version: '10.0'
+            version: '11.0'
         }
     ];
 
@@ -68,6 +68,7 @@ module.exports = function (grunt) {
             }
         },
         clean: {
+            doc: ['doc'],
             coverage: ['test/coverage'],
             declaration: ['js-hierarchy.declaration.*']
         },
@@ -136,12 +137,9 @@ module.exports = function (grunt) {
         typedoc: {
             default: {
                 options: {
-                    module: 'commonjs',
                     out: 'doc/',
                     name: 'js-hierarchy',
-                    target: 'es6',
-                    readme: 'README.md',
-                    exclude: 'test/**/*'
+                    readme: 'README.md'
                 }
             }
         },
@@ -265,10 +263,19 @@ module.exports = function (grunt) {
     );
 
     grunt.registerTask(
+        'doc',
+        [
+            'clean:doc',
+            'typedoc'
+        ]
+    )
+
+    grunt.registerTask(
         'release',
         [
             'test',
-            'typedoc',
+            'browsertest',
+            'doc',
             'browserify:default',
             'exec:uglify'
         ]

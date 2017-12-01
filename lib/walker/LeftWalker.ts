@@ -1,6 +1,7 @@
 /**
- * A walker, that runs all parents children from the current
- * child to the left.
+ * @module js-hierarchy
+ */
+/**
  */
 import {Walker} from './Walker';
 import {ActionFunction} from '../ActionFunction';

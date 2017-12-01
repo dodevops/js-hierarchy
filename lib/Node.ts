@@ -1,10 +1,15 @@
 /**
- * A node in the hierarchy
+ * @module js-hierarchy
+ */
+/**
  */
 import {ActionFunction} from './ActionFunction';
 import {Direction} from './Direction';
 import Bluebird = require('bluebird');
 
+/**
+ * A node in the hierarchy
+ */
 export interface Node {
     /**
      * Get all children of this node, if any.

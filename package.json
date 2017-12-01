@@ -1,7 +1,7 @@
 {
   "name": "js-hierarchy",
   "description": "Proper hierarchy management for Node, Typescript and the Browser.",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": {
     "name": "Dennis Ploeger",
     "email": "dennis.ploeger@kps.com"
@@ -40,6 +40,7 @@
     "tsify": "^3.0.1",
     "tslint": "3.15.1",
     "typedoc": "^0.8.0",
+    "typedoc-plugin-external-module-name": "^1.0.10",
     "typescript": "^2.0.10",
     "uglify-es": "github:mishoo/UglifyJS2#harmony",
     "chai-as-promised": "^7.1.1",

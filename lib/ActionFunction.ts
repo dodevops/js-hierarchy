@@ -1,4 +1,7 @@
 /**
+ * @module js-hierarchy
+ */
+/**
  * The type definition of the action function, that is called using
  * Node#walk.
  *

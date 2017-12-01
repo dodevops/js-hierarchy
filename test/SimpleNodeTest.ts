@@ -1,3 +1,9 @@
+/**
+ * @module Test
+ */
+/**
+ * Test a simple node
+ */
 import 'mocha';
 import {Node} from '../lib/Node';
 import {SimpleNode} from '../lib/SimpleNode';
