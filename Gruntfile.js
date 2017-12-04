@@ -140,7 +140,8 @@ module.exports = function (grunt) {
                     out: 'doc/',
                     name: 'js-hierarchy',
                     readme: 'README.md'
-                }
+                },
+                src: ['js-hierarchy.ts']
             }
         },
         browserify: {

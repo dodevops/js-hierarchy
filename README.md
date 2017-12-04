@@ -24,6 +24,10 @@ Install the module using npm:
 
     npm install --save js-hierarchy
 
+If you're using Typescript, you might want to add the following typings:
+
+    npm install @types/bluebird @types/loglevel @types/node --save-dev
+
 ## Basic usage
 
 ### Typescript
