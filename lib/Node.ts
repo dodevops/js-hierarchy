@@ -12,6 +12,11 @@ import Bluebird = require('bluebird');
  */
 export interface Node {
     /**
+     * A name for this node
+     */
+    name: string;
+
+    /**
      * Get all children of this node, if any.
      * @returns {Node[]} the children of this node. If the node doesn't contain
      *   any children, an empty array is returned
@@ -104,5 +109,26 @@ export interface Node {
      * @returns {string}
      */
     toJSON(): string;
+
+    /**
+     * Return a path to this node. Different nodes are separated by slashes /, if not specified otherwise
+     * @param {string} pathSeparator The optional path separator
+     * @return {string}
+     */
+    getPath(pathSeparator?: string): Bluebird<string>;
+
+    /**
+     * Get a node by specifying its path
+     * @param {string} path The path string
+     * @param {string} pathSeparator an optional path separator
+     * @return {Node}
+     */
+    getNodeByPath(path: string, pathSeparator?: string): Bluebird<Node>;
+
+    /**
+     * Get the root this node belongs to
+     * @return {Node}
+     */
+    getRoot(): Node;
 
 }

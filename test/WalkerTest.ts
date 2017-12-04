@@ -126,7 +126,7 @@ describe('Node#walk', () => {
                     checkNode.direction,
                     (node: Node): Bluebird<void> => {
                         chai.expect(
-                            node.getData('name'),
+                            node.name,
                             'Invalid node found'
                         )
                             .to.equal(

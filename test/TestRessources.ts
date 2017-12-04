@@ -12,19 +12,19 @@ import {SimpleNode} from '../lib/SimpleNode';
  * @returns {SimpleNode}
  */
 export function makeTestHierarchy(): SimpleNode {
-    let rootNode = new SimpleNode({ name: 'root' });
+    let rootNode = new SimpleNode('root');
     rootNode.addChild(
-        new SimpleNode({ name: 'test1' })
+        new SimpleNode('test1')
     );
     rootNode.addChild(
-        new SimpleNode({ name: 'test2'})
+        new SimpleNode('test2')
     );
-    let testNode3 = new SimpleNode({ name: 'test3' });
+    let testNode3 = new SimpleNode('test3');
     testNode3.addChild(
-        new SimpleNode({ name: 'test3.1' })
+        new SimpleNode('test3.1')
     );
     testNode3.addChild(
-        new SimpleNode({ name: 'test3.2' })
+        new SimpleNode('test3.2')
     );
     rootNode.addChild(testNode3);
     return rootNode;

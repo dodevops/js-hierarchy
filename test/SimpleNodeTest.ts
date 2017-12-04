@@ -9,6 +9,7 @@ import {Node} from '../lib/Node';
 import {SimpleNode} from '../lib/SimpleNode';
 import {makeTestHierarchy} from './TestRessources';
 import chai = require('chai');
+import Bluebird = require('bluebird');
 
 // for Browser tests
 
@@ -56,19 +57,19 @@ describe(
                 3);
 
             chai.expect(
-                rootNode.getChildren()[0].getData('name'),
+                rootNode.getChildren()[0].name,
                 'Invalid node'
             ).to.equal(
                 'test1');
 
             chai.expect(
-                rootNode.getChildren()[1].getData('name'),
+                rootNode.getChildren()[1].name,
                 'Invalid node'
             ).to.equal(
                 'test2');
 
             chai.expect(
-                rootNode.getChildren()[2].getData('name'),
+                rootNode.getChildren()[2].name,
                 'Invalid node'
             ).to.equal(
                 'test3');
@@ -83,13 +84,13 @@ describe(
 
 
             chai.expect(
-                testNode3.getChildren()[0].getData('name'),
+                testNode3.getChildren()[0].name,
                 'Invalid node'
             ).to.equal(
                 'test3.1');
 
             chai.expect(
-                testNode3.getChildren()[1].getData('name'),
+                testNode3.getChildren()[1].name,
                 'Invalid node'
             ).to.equal(
                 'test3.2');
@@ -137,13 +138,13 @@ describe(
                     2);
 
                 chai.expect(
-                    rootNode.getChildren()[0].getData('name'),
+                    rootNode.getChildren()[0].name,
                     'Invalid hierarchy'
                 ).to.equal(
                     'test1');
 
                 chai.expect(
-                    rootNode.getChildren()[1].getData('name'),
+                    rootNode.getChildren()[1].name,
                     'Invalid hierarchy'
                 ).to.equal(
                     'test3');
@@ -162,13 +163,13 @@ describe(
                     2);
 
                 chai.expect(
-                    rootNode.getChildren()[0].getData('name'),
+                    rootNode.getChildren()[0].name,
                     'Invalid hierarchy'
                 ).to.equal(
                     'test1');
 
                 chai.expect(
-                    rootNode.getChildren()[1].getData('name'),
+                    rootNode.getChildren()[1].name,
                     'Invalid hierarchy'
                 ).to.equal(
                     'test3');
@@ -214,12 +215,12 @@ describe(
                 let rootNode = makeTestHierarchy();
 
                 rootNode.addChild(
-                    new SimpleNode({name: 'testbetween'}),
+                    new SimpleNode('testbetween'),
                     1
                 );
 
                 chai.expect(
-                    rootNode.getChildren()[1].getData('name'),
+                    rootNode.getChildren()[1].name,
                     'Did not add'
                 ).to.equal(
                     'testbetween');
@@ -231,13 +232,13 @@ describe(
                     4);
 
                 chai.expect(
-                    rootNode.getChildren()[0].getData('name'),
+                    rootNode.getChildren()[0].name,
                     'Invalid hierarchy'
                 ).to.equal(
                     'test1');
 
                 chai.expect(
-                    rootNode.getChildren()[2].getData('name'),
+                    rootNode.getChildren()[2].name,
                     'Invalid hierarchy'
                 ).to.equal(
                     'test2');
@@ -286,5 +287,129 @@ describe(
                 );
             });
         });
+
+        describe('#getRoot', () => {
+            it('should provide the root of a node', function () {
+                let rootNode = makeTestHierarchy();
+
+                chai.expect(
+                    rootNode.getChildren()[2].getChildren()[0].getRoot().name
+                ).to.equal('root');
+
+                chai.expect(
+                    rootNode.getChildren()[2].getRoot().name
+                ).to.equal('root');
+
+                chai.expect(
+                    rootNode.getChildren()[0].getRoot().name
+                ).to.equal('root');
+            });
+        });
+
+        describe('#getPath', () => {
+            it('should provide the path to a node', function () {
+                let rootNode = makeTestHierarchy();
+
+                return Bluebird.all(
+                    [
+                        rootNode.getChildren()[2].getChildren()[0].getPath(),
+                        rootNode.getChildren()[2].getPath(),
+                        rootNode.getChildren()[0].getPath(),
+                        rootNode.getPath()
+                    ]
+                )
+
+                    .then(
+                        paths => {
+                            chai.expect(
+                                paths[0]
+                            ).to.equal('root/test3/test3.1');
+                            chai.expect(
+                                paths[1]
+                            ).to.equal('root/test3');
+                            chai.expect(
+                                paths[2]
+                            ).to.equal('root/test1');
+                            chai.expect(
+                                paths[3]
+                            ).to.equal('root');
+                        }
+                    );
+
+            });
+            it('should work with custom path separators', function () {
+                let rootNode = makeTestHierarchy();
+
+                return rootNode.getChildren()[2].getChildren()[0].getPath('|')
+                    .then(
+                        path => {
+                            chai.expect(path).to.equal('root|test3|test3.1');
+                        }
+                    );
+            });
+        });
+
+        describe('#getNodeByPath', () => {
+            it('should provide the node to a path', function () {
+                let rootNode = makeTestHierarchy();
+
+                return Bluebird.all(
+                    [
+                        rootNode.getNodeByPath('root/test3/test3.1'),
+                        rootNode.getNodeByPath('root/test3'),
+                        rootNode.getNodeByPath('root/test1'),
+                        rootNode.getNodeByPath('root'),
+                    ]
+                )
+
+                    .then(
+                        nodes => {
+                            chai.expect(
+                                nodes[0].name
+                            ).to.equal('test3.1');
+                            chai.expect(
+                                nodes[0].getParent().name
+                            ).to.equal('test3');
+                            chai.expect(
+                                nodes[1].name
+                            ).to.equal('test3');
+                            chai.expect(
+                                nodes[1].getParent().name
+                            ).to.equal('root');
+                            chai.expect(
+                                nodes[2].name
+                            ).to.equal('test1');
+                            chai.expect(
+                                nodes[2].getParent().name
+                            ).to.equal('root');
+                            chai.expect(
+                                nodes[3].name
+                            ).to.equal('root');
+                        }
+                    );
+
+            });
+            it('should work from another node than root', function () {
+                let rootNode = makeTestHierarchy();
+
+                return rootNode.getChildren()[2].getChildren()[0].getNodeByPath('root/test1')
+                    .then(
+                        node => {
+                            chai.expect(node.name).to.equal('test1');
+                        }
+                    );
+            });
+            it('should work with custom path separators', function () {
+                let rootNode = makeTestHierarchy();
+
+                return rootNode.getNodeByPath('root|test1', '|')
+                    .then(
+                        node => {
+                            chai.expect(node.name).to.equal('test1');
+                        }
+                    );
+            });
+        });
+
     }
 );

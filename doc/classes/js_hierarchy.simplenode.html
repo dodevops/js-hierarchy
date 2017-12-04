@@ -112,13 +112,22 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited tsd-is-external">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#name" class="tsd-kind-icon">name</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-inherited tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#addchild" class="tsd-kind-icon">add<wbr>Child</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#findchild" class="tsd-kind-icon">find<wbr>Child</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#getchildren" class="tsd-kind-icon">get<wbr>Children</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#getdata" class="tsd-kind-icon">get<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#getnodebypath" class="tsd-kind-icon">get<wbr>Node<wbr>ByPath</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#getpath" class="tsd-kind-icon">get<wbr>Path</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#getroot" class="tsd-kind-icon">get<wbr>Root</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#isroot" class="tsd-kind-icon">is<wbr>Root</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="js_hierarchy.simplenode.html#setdata" class="tsd-kind-icon">set<wbr>Data</a></li>
@@ -136,18 +145,21 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Simple<wbr>Node<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="js_hierarchy.simplenode.html" class="tsd-signature-type">SimpleNode</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Simple<wbr>Node<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="js_hierarchy.simplenode.html" class="tsd-signature-type">SimpleNode</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L30">lib/AbstractNode.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L41">lib/AbstractNode.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> name: <span class="tsd-signature-type">string</span></h5>
+								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> data: <span class="tsd-signature-type">object</span></h5>
 									<ul class="tsd-parameters">
@@ -171,9 +183,46 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#_log">_log</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L26">lib/AbstractNode.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L28">lib/AbstractNode.ts:28</a></li>
 						</ul>
 					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-external">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> name<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#name">name</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L35">lib/AbstractNode.ts:35</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#name">name</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L39">lib/AbstractNode.ts:39</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-external">
@@ -190,7 +239,7 @@
 								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#addchild">addChild</a></p>
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#addchild">addChild</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L53">lib/AbstractNode.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L67">lib/AbstractNode.ts:67</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -218,7 +267,7 @@
 								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#findchild">findChild</a></p>
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#findchild">findChild</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L101">lib/AbstractNode.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L115">lib/AbstractNode.ts:115</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -243,7 +292,7 @@
 								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#getchildren">getChildren</a></p>
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#getchildren">getChildren</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L40">lib/AbstractNode.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L54">lib/AbstractNode.ts:54</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/js_hierarchy.node.html" class="tsd-signature-type">Node</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -262,7 +311,7 @@
 								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#getdata">getData</a></p>
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#getdata">getData</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L197">lib/AbstractNode.ts:197</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L211">lib/AbstractNode.ts:211</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -272,6 +321,34 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="getnodebypath" class="tsd-anchor"></a>
+					<h3>get<wbr>Node<wbr>ByPath</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Node<wbr>ByPath<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pathSeparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Bluebird</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/js_hierarchy.node.html" class="tsd-signature-type">Node</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#getnodebypath">getNodeByPath</a></p>
+								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#getnodebypath">getNodeByPath</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L255">lib/AbstractNode.ts:255</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pathSeparator: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Bluebird</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/js_hierarchy.node.html" class="tsd-signature-type">Node</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -287,7 +364,51 @@
 								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#getparent">getParent</a></p>
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#getparent">getParent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L119">lib/AbstractNode.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L133">lib/AbstractNode.ts:133</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/js_hierarchy.node.html" class="tsd-signature-type">Node</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="getpath" class="tsd-anchor"></a>
+					<h3>get<wbr>Path</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Path<span class="tsd-signature-symbol">(</span>pathSeparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Bluebird</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#getpath">getPath</a></p>
+								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#getpath">getPath</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L232">lib/AbstractNode.ts:232</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pathSeparator: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Bluebird</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="getroot" class="tsd-anchor"></a>
+					<h3>get<wbr>Root</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Root<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/js_hierarchy.node.html" class="tsd-signature-type">Node</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#getroot">getRoot</a></p>
+								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#getroot">getRoot</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L268">lib/AbstractNode.ts:268</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/js_hierarchy.node.html" class="tsd-signature-type">Node</a></h4>
@@ -306,7 +427,7 @@
 								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#isroot">isRoot</a></p>
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#isroot">isRoot</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L133">lib/AbstractNode.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L147">lib/AbstractNode.ts:147</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -325,7 +446,7 @@
 								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#removechild">removeChild</a></p>
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#removechild">removeChild</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L72">lib/AbstractNode.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L86">lib/AbstractNode.ts:86</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -350,7 +471,7 @@
 								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#setdata">setData</a></p>
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#setdata">setData</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L191">lib/AbstractNode.ts:191</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L205">lib/AbstractNode.ts:205</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -378,7 +499,7 @@
 								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#setparent">setParent</a></p>
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#setparent">setParent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L126">lib/AbstractNode.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L140">lib/AbstractNode.ts:140</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -403,7 +524,7 @@
 								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#tojson">toJSON</a></p>
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L207">lib/AbstractNode.ts:207</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L221">lib/AbstractNode.ts:221</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -414,7 +535,7 @@
 					<a name="walk" class="tsd-anchor"></a>
 					<h3>walk</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">walk<span class="tsd-signature-symbol">(</span>direction<span class="tsd-signature-symbol">: </span><a href="../enums/js_hierarchy.direction.html" class="tsd-signature-type">Direction</a><span class="tsd-signature-symbol"> | </span><a href="../enums/js_hierarchy.direction.html" class="tsd-signature-type">Direction</a><span class="tsd-signature-symbol">[]</span>, action<span class="tsd-signature-symbol">: </span><a href="../modules/js_hierarchy.html#actionfunction" class="tsd-signature-type">ActionFunction</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Bluebird</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">walk<span class="tsd-signature-symbol">(</span>direction<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Direction.up</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.down</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.left</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.right</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.rootUp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">Direction.up</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.down</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.left</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.right</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.rootUp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span>, action<span class="tsd-signature-symbol">: </span><a href="../modules/js_hierarchy.html#actionfunction" class="tsd-signature-type">ActionFunction</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Bluebird</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -422,13 +543,13 @@
 								<p>Implementation of <a href="../interfaces/js_hierarchy.node.html">Node</a>.<a href="../interfaces/js_hierarchy.node.html#walk">walk</a></p>
 								<p>Inherited from <a href="js_hierarchy.abstractnode.html">AbstractNode</a>.<a href="js_hierarchy.abstractnode.html#walk">walk</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/969e399/lib/AbstractNode.ts#L142">lib/AbstractNode.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/AbstractNode.ts#L156">lib/AbstractNode.ts:156</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>direction: <a href="../enums/js_hierarchy.direction.html" class="tsd-signature-type">Direction</a><span class="tsd-signature-symbol"> | </span><a href="../enums/js_hierarchy.direction.html" class="tsd-signature-type">Direction</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>direction: <span class="tsd-signature-type">Direction.up</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.down</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.left</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.right</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.rootUp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">Direction.up</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.down</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.left</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.right</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Direction.rootUp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
 									<h5>action: <a href="../modules/js_hierarchy.html#actionfunction" class="tsd-signature-type">ActionFunction</a></h5>
@@ -450,7 +571,7 @@
 						<span>Internals</span>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_js_hierarchy_.html">"js-<wbr>hierarchy"</a>
+						<a href="../modules/test.html">Test</a>
 					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
@@ -475,10 +596,16 @@
 						<a href="js_hierarchy.downwalker.html" class="tsd-kind-icon">Down<wbr>Walker</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
+						<a href="js_hierarchy.emptypatherror.html" class="tsd-kind-icon">Empty<wbr>Path<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
 						<a href="js_hierarchy.invaliddirectionerror.html" class="tsd-kind-icon">Invalid<wbr>Direction<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
 						<a href="js_hierarchy.leftwalker.html" class="tsd-kind-icon">Left<wbr>Walker</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
+						<a href="js_hierarchy.nonameerror.html" class="tsd-kind-icon">No<wbr>Name<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
 						<a href="js_hierarchy.nodenotfounderror.html" class="tsd-kind-icon">Node<wbr>Not<wbr>Found<wbr>Error</a>
@@ -500,6 +627,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
 								<a href="js_hierarchy.simplenode.html#_log" class="tsd-kind-icon">_log</a>
 							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+								<a href="js_hierarchy.simplenode.html#name" class="tsd-kind-icon">name</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 								<a href="js_hierarchy.simplenode.html#addchild" class="tsd-kind-icon">add<wbr>Child</a>
 							</li>
@@ -513,7 +643,16 @@
 								<a href="js_hierarchy.simplenode.html#getdata" class="tsd-kind-icon">get<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+								<a href="js_hierarchy.simplenode.html#getnodebypath" class="tsd-kind-icon">get<wbr>Node<wbr>ByPath</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 								<a href="js_hierarchy.simplenode.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+								<a href="js_hierarchy.simplenode.html#getpath" class="tsd-kind-icon">get<wbr>Path</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+								<a href="js_hierarchy.simplenode.html#getroot" class="tsd-kind-icon">get<wbr>Root</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 								<a href="js_hierarchy.simplenode.html#isroot" class="tsd-kind-icon">is<wbr>Root</a>

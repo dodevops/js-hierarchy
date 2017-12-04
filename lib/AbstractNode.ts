@@ -15,8 +15,10 @@ import {InvalidDirectionError} from './error/InvalidDirectionError';
 import {NodeNotFoundError} from './error/NodeNotFoundError';
 import {DataNotFoundError} from './error/DataNotFoundError';
 import * as loglevel from 'loglevel';
-import Bluebird = require('bluebird');
 import {RootUpWalker} from './walker/RootUpWalker';
+import {NoNameError} from './error/NoNameError';
+import {EmptyPathError} from './error/EmptyPathError';
+import Bluebird = require('bluebird');
 
 /**
  * A starting point Node implementation to extend from
@@ -24,12 +26,24 @@ import {RootUpWalker} from './walker/RootUpWalker';
 export abstract class AbstractNode implements Node {
 
     protected _log: loglevel.Logger = null;
-
     private _children: Node[] = [];
     private _parent: Node = null;
     private _data: { [key: string]: any } = {};
 
-    constructor(data?: { [p: string]: any }) {
+    private _name: string = '';
+
+    public get name(): string {
+        return this._name;
+    }
+
+    public set name(value: string) {
+        this._name = value;
+    }
+
+    constructor(name?: string, data?: { [p: string]: any }) {
+        if (name) {
+            this._name = name;
+        }
         if (data) {
             this._data = data;
         }
@@ -213,5 +227,72 @@ export abstract class AbstractNode implements Node {
                 _children: this._children
             }
         );
+    }
+
+    public getPath(pathSeparator?: string): Bluebird<string> {
+        let pathComponents: Array<string> = [];
+        let _pathSeparator = '/';
+        if (pathSeparator) {
+            _pathSeparator = pathSeparator;
+        }
+        return this.walk(
+            Direction.rootUp,
+            node => {
+                if (node.name === '') {
+                    return Bluebird.reject(new NoNameError());
+                }
+                pathComponents.push(node.name);
+                return Bluebird.resolve();
+            }
+        )
+            .then(
+                () => {
+                    return Bluebird.resolve(pathComponents.join(_pathSeparator));
+                }
+            );
+    }
+
+    public getNodeByPath(path: string, pathSeparator?: string): Bluebird<Node> {
+        let _pathSeparator = '/';
+        if (pathSeparator) {
+            _pathSeparator = pathSeparator;
+        }
+        if (!this.isRoot()) {
+            // if we weren't called from root, get the root and call it
+            return this.getRoot().getNodeByPath(path, _pathSeparator);
+        }
+
+        return this._getNodeByPath(this, path, _pathSeparator);
+    }
+
+    public getRoot(): Node {
+        if (this.isRoot()) {
+            return this;
+        }
+
+        return this.getParent().getRoot();
+    }
+
+    private _getNodeByPath(node: Node, path: string, pathSeparator): Bluebird<Node> {
+
+        let pathComponents: Array<string> = path.split(pathSeparator);
+
+        if (node.name !== pathComponents[0]) {
+            return Bluebird.reject(new NodeNotFoundError(`Node with name ${pathComponents[0]} not found`));
+        }
+
+        if (pathComponents.length === 0) {
+            return Bluebird.reject(new EmptyPathError());
+        } else if (pathComponents.length === 1) {
+            return Bluebird.resolve(node);
+        } else {
+            pathComponents.shift();
+            for (let childNode of node.getChildren()) {
+                if (childNode.name === pathComponents[0]) {
+                    return this._getNodeByPath(childNode, pathComponents.join(pathSeparator), pathSeparator);
+                }
+            }
+            return Bluebird.reject(new NodeNotFoundError(`Node with name ${pathComponents[0]} not found`));
+        }
     }
 }
