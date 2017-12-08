@@ -411,5 +411,19 @@ describe(
             });
         });
 
+        describe('#getChildByName', () => {
+            it('should fetch a child by its name', function () {
+                let rootNode = makeTestHierarchy();
+
+                chai.expect(
+                    rootNode.getChildByName('test2')
+                ).to.be.not.null;
+
+                chai.expect(
+                    rootNode.getChildByName('invalidNode')
+                ).to.be.null;
+            });
+        });
+
     }
 );

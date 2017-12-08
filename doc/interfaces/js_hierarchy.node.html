@@ -106,6 +106,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="js_hierarchy.node.html#addchild" class="tsd-kind-icon">add<wbr>Child</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="js_hierarchy.node.html#findchild" class="tsd-kind-icon">find<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="js_hierarchy.node.html#getchildbyname" class="tsd-kind-icon">get<wbr>Child<wbr>ByName</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="js_hierarchy.node.html#getchildren" class="tsd-kind-icon">get<wbr>Children</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="js_hierarchy.node.html#getdata" class="tsd-kind-icon">get<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="js_hierarchy.node.html#getnodebypath" class="tsd-kind-icon">get<wbr>Node<wbr>ByPath</a></li>
@@ -131,7 +132,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L17">lib/Node.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L17">lib/Node.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -153,7 +154,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L33">lib/Node.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L40">lib/Node.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -192,7 +193,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L49">lib/Node.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L56">lib/Node.ts:56</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -220,6 +221,38 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getchildbyname" class="tsd-anchor"></a>
+					<h3>get<wbr>Child<wbr>ByName</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Child<wbr>ByName<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="js_hierarchy.node.html" class="tsd-signature-type">Node</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L31">lib/Node.ts:31</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a child based on the given name</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the name of the child node</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="js_hierarchy.node.html" class="tsd-signature-type">Node</a></h4>
+							<p>the found node or null</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 					<a name="getchildren" class="tsd-anchor"></a>
 					<h3>get<wbr>Children</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
@@ -229,7 +262,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L24">lib/Node.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L24">lib/Node.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -253,7 +286,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L105">lib/Node.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L112">lib/Node.ts:112</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -287,7 +320,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L126">lib/Node.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L133">lib/Node.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -324,7 +357,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L55">lib/Node.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L62">lib/Node.ts:62</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -347,7 +380,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L118">lib/Node.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L125">lib/Node.ts:125</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -378,7 +411,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L132">lib/Node.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L139">lib/Node.ts:139</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -400,7 +433,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L67">lib/Node.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L74">lib/Node.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -423,7 +456,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L41">lib/Node.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L48">lib/Node.ts:48</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -459,7 +492,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L97">lib/Node.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L104">lib/Node.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -497,7 +530,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L61">lib/Node.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L68">lib/Node.ts:68</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -525,7 +558,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L111">lib/Node.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L118">lib/Node.ts:118</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -547,7 +580,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c637617/lib/Node.ts#L86">lib/Node.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/dodevops/js-hierarchy/blob/c3cd28c/lib/Node.ts#L93">lib/Node.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -659,6 +692,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 								<a href="js_hierarchy.node.html#findchild" class="tsd-kind-icon">find<wbr>Child</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="js_hierarchy.node.html#getchildbyname" class="tsd-kind-icon">get<wbr>Child<wbr>ByName</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 								<a href="js_hierarchy.node.html#getchildren" class="tsd-kind-icon">get<wbr>Children</a>

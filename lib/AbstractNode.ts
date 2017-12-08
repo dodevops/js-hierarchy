@@ -64,6 +64,16 @@ export abstract class AbstractNode implements Node {
         return this._children;
     }
 
+    public getChildByName(name: string): Node {
+        for (let node of this.getChildren()) {
+            if (node.name === name) {
+                return node;
+            }
+        }
+
+        return null;
+    }
+
     public addChild(child: Node, position?: number): Node {
         if (this._log.getLevel() <= loglevel.levels.DEBUG) {
             this._log.debug(`Adding child ${child.toJSON()}`);

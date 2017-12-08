@@ -24,6 +24,13 @@ export interface Node {
     getChildren(): Node[];
 
     /**
+     * Get a child based on the given name
+     * @param {string} name the name of the child node
+     * @return {Node} the found node or null
+     */
+    getChildByName(name: string): Node;
+
+    /**
      * Add a new child to this node, optionally specifying the index
      * @param {Node} child The new child node
      * @param {number} position The index where the new node should be inserted
