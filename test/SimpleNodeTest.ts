@@ -425,5 +425,23 @@ describe(
             });
         });
 
+        describe('#getLevel', () => {
+            it('should return the correct distance from root', function () {
+                let rootNode = makeTestHierarchy();
+
+                chai.expect(
+                    rootNode.getLevel()
+                ).to.equal(0);
+
+                chai.expect(
+                    rootNode.getChildByName('test3').getLevel()
+                ).to.equal(1);
+
+                chai.expect(
+                    rootNode.getChildByName('test3').getChildByName('test3.1').getLevel()
+                ).to.equal(2);
+            });
+        });
+
     }
 );

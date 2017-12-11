@@ -283,6 +283,14 @@ export abstract class AbstractNode implements Node {
         return this.getParent().getRoot();
     }
 
+    public getLevel(): number {
+        if (!this.isRoot()) {
+            return this.getParent().getLevel() + 1;
+        } else {
+            return 0;
+        }
+    }
+
     private _getNodeByPath(node: Node, path: string, pathSeparator): Bluebird<Node> {
 
         let pathComponents: Array<string> = path.split(pathSeparator);

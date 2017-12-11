@@ -138,4 +138,12 @@ export interface Node {
      */
     getRoot(): Node;
 
+    /**
+     * The distance of this node from the root node.
+     *
+     * If it IS the root node, it's 0. If it's parent is the root node it's 1 and so on.
+     * @return {number}
+     */
+    getLevel(): number;
+
 }
