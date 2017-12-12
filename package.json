@@ -1,7 +1,7 @@
 {
   "name": "js-hierarchy",
   "description": "Proper hierarchy management for Node, Typescript and the Browser.",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "author": {
     "name": "Dennis Ploeger",
     "email": "dennis.ploeger@kps.com"
