@@ -19,6 +19,7 @@ import {RootUpWalker} from './walker/RootUpWalker';
 import {NoNameError} from './error/NoNameError';
 import {EmptyPathError} from './error/EmptyPathError';
 import Bluebird = require('bluebird');
+import {InvalidNodeError} from './error/InvalidNodeError';
 
 /**
  * A starting point Node implementation to extend from
@@ -99,9 +100,7 @@ export abstract class AbstractNode implements Node {
                 child < 0 ||
                 child > this._children.length - 1
             ) {
-                let error = new NodeNotFoundError(
-                    `Node with id ${child} was not found`
-                );
+                let error = new NodeNotFoundError(child);
                 this._log.error(error.message);
                 throw error;
             }
@@ -133,9 +132,7 @@ export abstract class AbstractNode implements Node {
             }
         }
 
-        let error = new NodeNotFoundError(
-            `Invalid Node ${child.toJSON()}`
-        );
+        let error = new InvalidNodeError(child);
         this._log.error(error.message);
         throw error;
     }
@@ -197,7 +194,7 @@ export abstract class AbstractNode implements Node {
                     default:
                         return Bluebird.reject(
                             new InvalidDirectionError(
-                                `Invalid direction ${currentDirection}`
+                                currentDirection
                             )
                         );
                 }
@@ -220,7 +217,7 @@ export abstract class AbstractNode implements Node {
 
     public getData(key: string): any {
         if (!this._data.hasOwnProperty(key)) {
-            let error = new DataNotFoundError(`No data found with key ${key}`);
+            let error = new DataNotFoundError(key);
             this._log.error(error.message);
             throw error;
         }
@@ -296,7 +293,7 @@ export abstract class AbstractNode implements Node {
         let pathComponents: Array<string> = path.split(pathSeparator);
 
         if (node.name !== pathComponents[0]) {
-            return Bluebird.reject(new NodeNotFoundError(`Node with name ${pathComponents[0]} not found`));
+            return Bluebird.reject(new NodeNotFoundError(pathComponents[0]));
         }
 
         if (pathComponents.length === 0) {
@@ -310,7 +307,7 @@ export abstract class AbstractNode implements Node {
                     return this._getNodeByPath(childNode, pathComponents.join(pathSeparator), pathSeparator);
                 }
             }
-            return Bluebird.reject(new NodeNotFoundError(`Node with name ${pathComponents[0]} not found`));
+            return Bluebird.reject(new NodeNotFoundError(pathComponents[0]));
         }
     }
 }

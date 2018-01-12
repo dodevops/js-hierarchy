@@ -185,7 +185,7 @@ describe(
                     'Did not throw'
                 )
                     .to.throw(
-                    'Node with id 99 was not found'
+                    'Node with id 99 not found'
                 );
 
             });
