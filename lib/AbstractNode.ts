@@ -16,10 +16,9 @@ import {NodeNotFoundError} from './error/NodeNotFoundError';
 import {DataNotFoundError} from './error/DataNotFoundError';
 import * as loglevel from 'loglevel';
 import {RootUpWalker} from './walker/RootUpWalker';
-import {NoNameError} from './error/NoNameError';
 import {EmptyPathError} from './error/EmptyPathError';
-import Bluebird = require('bluebird');
 import {InvalidNodeError} from './error/InvalidNodeError';
+import Bluebird = require('bluebird');
 
 /**
  * A starting point Node implementation to extend from
@@ -236,25 +235,37 @@ export abstract class AbstractNode implements Node {
         );
     }
 
-    public getPath(pathSeparator?: string): Bluebird<string> {
-        let pathComponents: Array<string> = [];
-        let _pathSeparator = '/';
-        if (pathSeparator) {
-            _pathSeparator = pathSeparator;
-        }
+    public getPathNodes(): Bluebird<Array<Node>> {
+        let pathNodes: Array<Node> = [];
         return this.walk(
             Direction.rootUp,
             node => {
-                if (node.name === '') {
-                    return Bluebird.reject(new NoNameError());
-                }
-                pathComponents.push(node.name);
+                pathNodes.push(node);
                 return Bluebird.resolve();
             }
         )
             .then(
                 () => {
-                    return Bluebird.resolve(pathComponents.join(_pathSeparator));
+                    return Bluebird.resolve(pathNodes);
+                }
+            );
+    }
+
+    public getPath(pathSeparator?: string): Bluebird<string> {
+        return this.getPathNodes()
+            .then(
+                pathNodes => {
+                    let pathComponents: Array<string> = [];
+                    let _pathSeparator = '/';
+                    if (pathSeparator) {
+                        _pathSeparator = pathSeparator;
+                    }
+
+                    for (let pathNode of pathNodes) {
+                        pathComponents.push(pathNode.name);
+                    }
+
+                    return Bluebird.resolve(_pathSeparator + pathComponents.join(_pathSeparator));
                 }
             );
     }
@@ -264,12 +275,26 @@ export abstract class AbstractNode implements Node {
         if (pathSeparator) {
             _pathSeparator = pathSeparator;
         }
+
+        if (!path.startsWith(_pathSeparator)) {
+            // convert a relative path to an absolute path
+            return this.getPath(_pathSeparator)
+                .then(
+                    pathToThisNode => {
+                        return this.getRoot().getNodeByPath([pathToThisNode, path].join(_pathSeparator), _pathSeparator);
+                    }
+                );
+        }
+
         if (!this.isRoot()) {
-            // if we weren't called from root, get the root and call it
+            // if this is an absolute path, go to the root first.
             return this.getRoot().getNodeByPath(path, _pathSeparator);
         }
 
-        return this._getNodeByPath(this, path, _pathSeparator);
+        // remove the path separator from the start of the path
+        path = path.slice(1);
+
+        return this._getNodeByPathArray(this, path.split(_pathSeparator));
     }
 
     public getRoot(): Node {
@@ -288,10 +313,25 @@ export abstract class AbstractNode implements Node {
         }
     }
 
-    private _getNodeByPath(node: Node, path: string, pathSeparator): Bluebird<Node> {
+    public getNodeByPathArray(pathNodes: Array<string>, absolute: boolean): Bluebird<Node> {
+        if (!absolute) {
+            return this.getPathNodes()
+                .then(
+                    thisPathNodes => {
+                        let thisPathNodeNames: Array<string> = [];
 
-        let pathComponents: Array<string> = path.split(pathSeparator);
+                        for (let pathNode of thisPathNodes) {
+                            thisPathNodeNames.push(pathNode.name);
+                        }
 
+                        return this._getNodeByPathArray(this.getRoot(), thisPathNodeNames);
+                    }
+                );
+        }
+        return this._getNodeByPathArray(this.getRoot(), pathNodes);
+    }
+
+    private _getNodeByPathArray(node: Node, pathComponents: Array<string>): Bluebird<Node> {
         if (node.name !== pathComponents[0]) {
             return Bluebird.reject(new NodeNotFoundError(pathComponents[0]));
         }
@@ -304,10 +344,11 @@ export abstract class AbstractNode implements Node {
             pathComponents.shift();
             for (let childNode of node.getChildren()) {
                 if (childNode.name === pathComponents[0]) {
-                    return this._getNodeByPath(childNode, pathComponents.join(pathSeparator), pathSeparator);
+                    return this._getNodeByPathArray(childNode, pathComponents);
                 }
             }
             return Bluebird.reject(new NodeNotFoundError(pathComponents[0]));
         }
     }
+
 }

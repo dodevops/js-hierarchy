@@ -118,19 +118,34 @@ export interface Node {
     toJSON(): string;
 
     /**
-     * Return a path to this node. Different nodes are separated by slashes /, if not specified otherwise
-     * @param {string} pathSeparator The optional path separator
+     * Return an absolute path to this node starting with the pathSeparator.
+     * @param {string} pathSeparator The optional path separator [/]
      * @return {string}
      */
     getPath(pathSeparator?: string): Bluebird<string>;
 
     /**
-     * Get a node by specifying its path
+     * Get all nodes in the direct path from root for this node
+     * @return {Bluebird<Array<Node>>}
+     */
+    getPathNodes(): Bluebird<Array<Node>>;
+
+    /**
+     * Get a node by specifying its path. This can be an absolute path, starting with the path separator or
+     * a relative path starting from the current node.
      * @param {string} path The path string
      * @param {string} pathSeparator an optional path separator
      * @return {Node}
      */
     getNodeByPath(path: string, pathSeparator?: string): Bluebird<Node>;
+
+    /**
+     * Retrieve a node by specifying all node names in between
+     * @param {Array<Node>} pathNodes an array of node names forming the path
+     * @param {boolean} absolute should the path be treated absolute? (if not, relative from the current node is used)
+     * @return {Bluebird<Node>}
+     */
+    getNodeByPathArray(pathNodes: Array<string>, absolute: boolean): Bluebird<Node>;
 
     /**
      * Get the root this node belongs to
