@@ -421,6 +421,19 @@ describe(
             });
         });
 
+        describe('#getNodeByPathArray', () => {
+            it('should work with relative paths', function () {
+                let rootNode = makeTestHierarchy();
+
+                return rootNode.getChildren()[2].getNodeByPathArray(['test3.1'], false)
+                    .then(
+                        node => {
+                            chai.expect(node.name).to.equal('test3.1');
+                        }
+                    );
+            });
+        });
+
         describe('#getChildByName', () => {
             it('should fetch a child by its name', function () {
                 let rootNode = makeTestHierarchy();

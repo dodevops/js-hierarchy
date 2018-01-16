@@ -276,25 +276,12 @@ export abstract class AbstractNode implements Node {
             _pathSeparator = pathSeparator;
         }
 
-        if (!path.startsWith(_pathSeparator)) {
-            // convert a relative path to an absolute path
-            return this.getPath(_pathSeparator)
-                .then(
-                    pathToThisNode => {
-                        return this.getRoot().getNodeByPath([pathToThisNode, path].join(_pathSeparator), _pathSeparator);
-                    }
-                );
+        if (path.startsWith(_pathSeparator)) {
+            return this.getNodeByPathArray(path.split(_pathSeparator).slice(1), true);
+        } else {
+            return this.getNodeByPathArray(path.split(_pathSeparator), false);
         }
 
-        if (!this.isRoot()) {
-            // if this is an absolute path, go to the root first.
-            return this.getRoot().getNodeByPath(path, _pathSeparator);
-        }
-
-        // remove the path separator from the start of the path
-        path = path.slice(1);
-
-        return this._getNodeByPathArray(this, path.split(_pathSeparator));
     }
 
     public getRoot(): Node {
@@ -324,7 +311,7 @@ export abstract class AbstractNode implements Node {
                             thisPathNodeNames.push(pathNode.name);
                         }
 
-                        return this._getNodeByPathArray(this.getRoot(), thisPathNodeNames);
+                        return this._getNodeByPathArray(this.getRoot(), thisPathNodeNames.concat(pathNodes));
                     }
                 );
         }
