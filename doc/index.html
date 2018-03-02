@@ -88,13 +88,13 @@
 				applications. Simply install the module and you&#39;re ready to go:</p>
 				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> {SimpleNode} <span class="hljs-keyword">from</span> <span class="hljs-string">'js-hierarchy'</span>;
 
-<span class="hljs-keyword">let</span> rootNode: SimpleNode = <span class="hljs-keyword">new</span> SimpleNode();
+<span class="hljs-keyword">let</span> rootNode: SimpleNode = <span class="hljs-keyword">new</span> SimpleNode(<span class="hljs-string">'nodeName'</span>);
 </code></pre>
 				<h3 id="node-js">Node.js</h3>
 				<p>After installing the module, use it with require():</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> hierarchy = <span class="hljs-built_in">require</span>(<span class="hljs-string">'js-hierarchy'</span>);
 
-<span class="hljs-keyword">var</span> rootNode = <span class="hljs-keyword">new</span> hierarchy.SimpleNode();
+<span class="hljs-keyword">var</span> rootNode = <span class="hljs-keyword">new</span> hierarchy.SimpleNode(<span class="hljs-string">'nodeName'</span>);
 </code></pre>
 				<h3 id="browser">Browser</h3>
 				<p>Install the module and include the browser script:</p>
@@ -104,21 +104,21 @@
 				<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/js-hierarchy/browser.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 				<p>With this the global namespace will include a &quot;jshierarchy&quot; object:</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> rootNode = <span class="hljs-keyword">new</span> jshierarchy.SimpleNode();
+				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> rootNode = <span class="hljs-keyword">new</span> jshierarchy.SimpleNode(<span class="hljs-string">'nodeName'</span>);
 </code></pre>
 				<p>After that, everything&#39;s right as working in Node.js.</p>
 				<h2 id="building-the-hierarchy">Building the hierarchy</h2>
 				<p>The tree-like data structures, that js-hierarchy can build are build
 					up from &quot;Nodes&quot;. There can be several implementations of the Node
 				interface, but the simplest one is called &quot;SimpleNode&quot;.</p>
-				<p>Just instantiate it to create a new node:</p>
-				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode();
+				<p>Just instantiate it to create a new node and give it a name:</p>
+				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode(<span class="hljs-string">'nodeName'</span>);
 </code></pre>
 				<p>If a node has no parent, it is considered the &quot;root node&quot;. A node can
 					include a number of children, obviously. Simply use the &quot;addChild&quot;-
 				method to add one:</p>
-				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode();
-rootNode.addChild(<span class="hljs-keyword">new</span> SimpleNode());
+				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode(<span class="hljs-string">'nodeName'</span>);
+rootNode.addChild(<span class="hljs-keyword">new</span> SimpleNode(<span class="hljs-string">'childNodeName'</span>));
 </code></pre>
 				<p>Adding the child will automatically set the child&#39;s parent to
 				the node it was added to.</p>
@@ -126,14 +126,14 @@ rootNode.addChild(<span class="hljs-keyword">new</span> SimpleNode());
 				<p>Because nodes without any information aren&#39;t quite useful, js-hierarchy
 				supports storing arbitrary data in a key/value manner.</p>
 				<p>To add a new data to a node, use the method &quot;setData&quot;:</p>
-				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode();
+				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode(<span class="hljs-string">'nodeName'</span>);
 rootNode.setData(<span class="hljs-string">'mykey'</span>, <span class="hljs-string">'myvalue'</span>);
 </code></pre>
 				<p>You can also directly set the data when instantiating the node:</p>
-				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode({<span class="hljs-string">'mykey'</span>: <span class="hljs-string">'myValue'</span>});
+				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode(<span class="hljs-string">'nodeName'</span>, {<span class="hljs-string">'mykey'</span>: <span class="hljs-string">'myValue'</span>});
 </code></pre>
 				<p>Use &quot;getData&quot; to retrieve node data again later:</p>
-				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode({<span class="hljs-string">'mykey'</span>: <span class="hljs-string">'myValue'</span>});
+				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode(<span class="hljs-string">'nodeName'</span>, {<span class="hljs-string">'mykey'</span>: <span class="hljs-string">'myValue'</span>});
 <span class="hljs-built_in">console</span>.log(rootNode.getData(<span class="hljs-string">'mykey'</span>));
 <span class="hljs-comment">// will output: myValue</span>
 </code></pre>
@@ -144,16 +144,16 @@ rootNode.setData(<span class="hljs-string">'mykey'</span>, <span class="hljs-str
 					defined function on each node it encounters. Please note, that only the
 					directions traversing the tree vertically (Down, Up, and RootDown)
 				will call the action on the original node.</p>
-				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode({<span class="hljs-string">'name'</span>: <span class="hljs-string">'root'</span>});
-childNode = <span class="hljs-keyword">new</span> SimpleNode({<span class="hljs-string">'name'</span>: <span class="hljs-string">'child'</span>});
-childNode.addChild(<span class="hljs-keyword">new</span> SimpleNode({<span class="hljs-string">'name'</span>: <span class="hljs-string">'grandChild'</span>}));
+				<pre><code class="lang-javascript">rootNode = <span class="hljs-keyword">new</span> SimpleNode(<span class="hljs-string">'nodeName'</span>, {<span class="hljs-string">'testkey'</span>: <span class="hljs-string">'value'</span>});
+childNode = <span class="hljs-keyword">new</span> SimpleNode(<span class="hljs-string">'childNodeName'</span>, {<span class="hljs-string">'testkey'</span>: <span class="hljs-string">'childvalue'</span>});
+childNode.addChild(<span class="hljs-keyword">new</span> SimpleNode(<span class="hljs-string">'grandChildNodeName'</span>, {<span class="hljs-string">'testkey'</span>: <span class="hljs-string">'grandChildvalue'</span>}));
 rootNode.addChild(childNode);
 
 rootNode.walk(Direction.up, (node) =&gt; {
-    <span class="hljs-built_in">console</span>.log(node.getData(<span class="hljs-string">'name'</span>));
+    <span class="hljs-built_in">console</span>.log(node.getData(<span class="hljs-string">'testkey'</span>));
     <span class="hljs-keyword">return</span> Bluebird.resolve();
 });
-<span class="hljs-comment">// will output 'root', 'child' and 'grandChild'</span>
+<span class="hljs-comment">// will output 'value', 'childvalue' and 'grandChildvalue'</span>
 </code></pre>
 				<p>Please look at this example tree:</p>
 				<pre><code>                                    +----------------+
