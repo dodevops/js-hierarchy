@@ -38,7 +38,7 @@ applications. Simply install the module and you're ready to go:
 ```typescript
 import {SimpleNode} from 'js-hierarchy';
 
-let rootNode: SimpleNode = new SimpleNode();
+let rootNode: SimpleNode = new SimpleNode('nodeName');
 ```
 
 ### Node.js
@@ -48,7 +48,7 @@ After installing the module, use it with require():
 ```javascript
 var hierarchy = require('js-hierarchy');
 
-var rootNode = new hierarchy.SimpleNode();
+var rootNode = new hierarchy.SimpleNode('nodeName');
 ```
 
 ### Browser
@@ -67,7 +67,7 @@ or use the jsDelivr CDN hosted version:
 With this the global namespace will include a "jshierarchy" object:
 
 ```javascript
-var rootNode = new jshierarchy.SimpleNode();
+var rootNode = new jshierarchy.SimpleNode('nodeName');
 ```
 
 After that, everything's right as working in Node.js.
@@ -78,10 +78,10 @@ The tree-like data structures, that js-hierarchy can build are build
 up from "Nodes". There can be several implementations of the Node
 interface, but the simplest one is called "SimpleNode".
 
-Just instantiate it to create a new node:
+Just instantiate it to create a new node and give it a name:
 
 ```javascript
-rootNode = new SimpleNode();
+rootNode = new SimpleNode('nodeName');
 ```
 
 If a node has no parent, it is considered the "root node". A node can
@@ -89,8 +89,8 @@ include a number of children, obviously. Simply use the "addChild"-
 method to add one:
 
 ```javascript
-rootNode = new SimpleNode();
-rootNode.addChild(new SimpleNode());
+rootNode = new SimpleNode('nodeName');
+rootNode.addChild(new SimpleNode('childNodeName'));
 ```
 
 Adding the child will automatically set the child's parent to
@@ -104,20 +104,20 @@ supports storing arbitrary data in a key/value manner.
 To add a new data to a node, use the method "setData":
 
 ```javascript
-rootNode = new SimpleNode();
+rootNode = new SimpleNode('nodeName');
 rootNode.setData('mykey', 'myvalue');
 ```
 
 You can also directly set the data when instantiating the node:
 
 ```javascript
-rootNode = new SimpleNode({'mykey': 'myValue'});
+rootNode = new SimpleNode('nodeName', {'mykey': 'myValue'});
 ```
 
 Use "getData" to retrieve node data again later:
 
 ```javascript
-rootNode = new SimpleNode({'mykey': 'myValue'});
+rootNode = new SimpleNode('nodeName', {'mykey': 'myValue'});
 console.log(rootNode.getData('mykey'));
 // will output: myValue
 ```
@@ -133,16 +133,16 @@ directions traversing the tree vertically (Down, Up, and RootDown)
 will call the action on the original node.
 
 ```javascript
-rootNode = new SimpleNode({'name': 'root'});
-childNode = new SimpleNode({'name': 'child'});
-childNode.addChild(new SimpleNode({'name': 'grandChild'}));
+rootNode = new SimpleNode('nodeName', {'testkey': 'value'});
+childNode = new SimpleNode('childNodeName', {'testkey': 'childvalue'});
+childNode.addChild(new SimpleNode('grandChildNodeName', {'testkey': 'grandChildvalue'}));
 rootNode.addChild(childNode);
 
 rootNode.walk(Direction.up, (node) => {
-    console.log(node.getData('name'));
+    console.log(node.getData('testkey'));
     return Bluebird.resolve();
 });
-// will output 'root', 'child' and 'grandChild'
+// will output 'value', 'childvalue' and 'grandChildvalue'
 ```
 
 Please look at this example tree:
