@@ -1,11 +1,11 @@
 # js-hierarchy
 
-[![Sauce Test Status](https://saucelabs.com/buildstatus/js-hierarchy)](https://saucelabs.com/u/dodevops)
+[![TestingBot Test Status](https://testingbot.com/buildstatus/190e841358e8e595f6f7c007e8196dd4)](https://testingbot.com/builds/190e841358e8e595f6f7c007e8196dd4?auth=2e97049df058e9e19afeb9815cfbd92f)
 [![Travis](https://img.shields.io/travis/dodevops/js-hierarchy.svg)](https://travis-ci.org/dodevops/js-hierarchy)
 [![node](https://img.shields.io/node/v/js-hierarchy.svg)](https://www.npmjs.com/package/js-hierarchy)
 [![npm](https://img.shields.io/npm/v/js-hierarchy.svg)](https://www.npmjs.com/package/js-hierarchy)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/js-hierarchy.svg)](https://saucelabs.com/u/js-hierarchy)
+[![TestingBot Test Status](https://testingbot.com/buildmatrix/190e841358e8e595f6f7c007e8196dd4)](https://testingbot.com/builds/190e841358e8e595f6f7c007e8196dd4?auth=2e97049df058e9e19afeb9815cfbd92f)
 
 Proper hierarchy management for Node, Typescript and the Browser.
 

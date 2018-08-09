@@ -24,13 +24,11 @@
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-coveralls": "^1.0.1",
     "grunt-exec": "^3.0.0",
     "grunt-istanbul": "^0.7.2",
     "grunt-mocha-test": "^0.13.2",
-    "grunt-saucelabs": "^9.0.0",
     "grunt-ts": "^6.0.0-beta.3",
     "grunt-tslint": "^3.3.0",
     "grunt-typedoc": "^0.2.4",
@@ -44,7 +42,11 @@
     "typescript": "^2.0.10",
     "uglify-es": "github:mishoo/UglifyJS2#harmony",
     "chai-as-promised": "^7.1.1",
-    "@types/chai-as-promised": "^7.1.0"
+    "@types/chai-as-promised": "^7.1.0",
+    "webdriverio": "^4.13.1",
+    "wdio-testingbot-service": "0.1.7",
+    "wdio-mocha-framework": "^0.6.2",
+    "grunt-webdriver": "^2.0.3"
   },
   "keywords": [
     "hierarchy",

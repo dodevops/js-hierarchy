@@ -6,6 +6,10 @@ node_js:
     - "8"
     - "9"
 
+env:
+    - secure: "V4ikZwhQb2QZLSgG3owR6hXQEnce0OYeEmVAib+18E4GvgDRZiS1zd8F0vinGbmloFB6yZY4oWNdJrwCetyGMtWuBL93my/r2oliCkomk64GFK+Rv7qWYFs2z3glkeLbmLC0S/gxv/ZwnP20mT3qTCPWjEsyXx3nlLjSmWeaOt9RlHI5nZjM09Rkn75TC33I2SoB+uYjN2PX+mYsAIxeleoJhxTy/KirGaWbIDMw0uwiIt5aTqjYAbf2q67X8KRLeyodK8K3s8YBSap+7c1fpUQJlI1vcBHE0ynfoiwrV5rpXafGEG6sd0SU40s5FLMBwC21EIzHId/kXrIrfYm8yWM5FAetIxg+G+kaXWxjY+kWaFv/oSSZgIgUHMBrmTZJsWczQb3P9YM7PBb88nVBRGk8XI1TupqSM+HV/XWbKRJfTpOaWgBzHPd4ggn42tug9vP8ky9MhDM+3f/9B949oQtz37f65/OslVffynZNU1kk0O2CT/hDjuEXy4t6uSJijIYqvklhT6howfYL+xrUIy9KjKPQsVJGdUdGtK+X66exZzJPWduqzI+3WlpXcJsdKTSHjoHifncJgguz+HmzmuIHBvhvbBYwhPustb+X36O1X496WxS14mrgQIHr7Hl8FLUTaFUoQM4ayUFo1SD5npDdKh6RyqdPRUbpGEH7gBM="
+
 script:
     - grunt test
     - grunt coveralls
+    - 'if [ "$TRAVIS_PULL_REQUEST" = "false" -a "${TRAVIS_NODE_VERSION:0:1}" = "9" ]; then grunt browsertest; fi'
